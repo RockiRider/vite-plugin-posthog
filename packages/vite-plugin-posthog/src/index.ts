@@ -4,13 +4,18 @@ import { VitePostHogProps } from "./types.js";
 export default function VitePostHog(options?: VitePostHogProps): Plugin {
   return {
     name: "vite-plugin-posthog",
-    apply: "build",
     enforce: "post",
-    async transformIndexHtml(html, { chunk }) {
-      //   return {
-      //     html: tranformedHtml,
-      //     tags: InjectedHtmlTags,
-      //   };
+    async transformIndexHtml() {
+      const injectedTag: HtmlTagDescriptor = {
+        tag: "script",
+        attrs: {
+          type: "text/javascript",
+          src: "https://cdn.posthog.com/ph.js",
+          async: true,
+          defer: true,
+        },
+      };
+      return [injectedTag];
     },
   };
 }
