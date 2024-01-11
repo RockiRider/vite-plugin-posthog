@@ -1,6 +1,7 @@
 import { HtmlTagDescriptor, Plugin } from "vite";
+import { VitePostHogProps } from "./types.js";
 
-export default function myPlugin(options?: MyPluginOptions): Plugin {
+export default function VitePostHog(options?: VitePostHogProps): Plugin {
   return {
     name: "vite-plugin-posthog",
     apply: "build",
