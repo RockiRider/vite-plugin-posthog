@@ -1,25 +1,20 @@
 {
   "name": "vite-plugin-posthog",
-  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "build": "tsup src/index.ts --sourcemap --dts --minify --format esm --silent"
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "exports": {
-    "import": "./dist/index.js"
-  },
-  "types": "dist/index.d.ts",
-  "typings": "dist/index.d.ts",
-  "type": "module",
   "devDependencies": {
-    "@playwright/test": "^1.40.1",
-    "@rollup/pluginutils": "^5.0.3",
-    "@types/jest": "^29.5.11",
-    "@types/node": "^20.11.0",
-    "tsup": "^8.0.1"
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "prettier": "^3.1.1",
+    "turbo": "latest"
   },
-  "dependencies": {
-    "vite": "4.5.1"
+  "packageManager": "pnpm@8.9.0",
+  "engines": {
+    "node": ">=18"
   }
 }
