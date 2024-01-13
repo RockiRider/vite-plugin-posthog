@@ -1,19 +1,19 @@
 import { HtmlTagDescriptor, Plugin } from "vite";
 import { VitePostHogProps } from "./types.js";
+import { getScript } from "./posthogScript.js";
 
-export default function VitePostHog(options?: VitePostHogProps): Plugin {
+export function VitePostHog(options: VitePostHogProps): Plugin {
   return {
     name: "vite-plugin-posthog",
     enforce: "post",
     async transformIndexHtml() {
       const injectedTag: HtmlTagDescriptor = {
         tag: "script",
+        injectTo: "head-prepend",
         attrs: {
           type: "text/javascript",
-          src: "https://cdn.posthog.com/ph.js",
-          async: true,
-          defer: true,
         },
+        children: getScript(options.apiKey, options.hostUrl),
       };
       return [injectedTag];
     },

@@ -2,7 +2,7 @@
   "name": "vite-plugin-posthog",
   "private": true,
   "scripts": {
-    "build": "turbo build",
+    "build": "turbo build --filter=vite-plugin-posthog",
     "dev": "turbo dev --filter=example-vite",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
