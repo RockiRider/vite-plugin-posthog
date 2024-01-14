@@ -3,8 +3,8 @@
   "private": true,
   "scripts": {
     "build": "turbo build --filter=vite-plugin-posthog --filter=react-posthog-consent",
-    "dev": "turbo dev --filter=example-vite",
-    "example:build": "turbo build --filter=example-vite",
+    "dev": "turbo dev --filter=example-react",
+    "example:build": "turbo build --filter=example-react",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
