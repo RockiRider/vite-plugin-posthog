@@ -14,6 +14,7 @@ export default ({ mode }) => {
       VitePostHog({
         apiKey: process.env.VITE_POSTHOG_KEY,
         hostUrl: "https://eu.posthog.com",
+        isDevModeOn: true,
       }),
     ],
   });
