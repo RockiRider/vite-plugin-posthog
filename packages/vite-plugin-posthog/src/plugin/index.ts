@@ -1,8 +1,13 @@
 import { HtmlTagDescriptor, Plugin } from "vite";
-import { VitePostHogProps } from "../types.js";
+import { VitePostHogOptions } from "../types.js";
 import { constructScript } from "./construct.js";
 
-export function VitePostHog(options: VitePostHogProps): Plugin {
+/**
+ *
+ * @param options
+ * @returns
+ */
+export function VitePostHog(options: VitePostHogOptions): Plugin {
   return {
     name: "vite-plugin-posthog",
     enforce: "post",
@@ -13,7 +18,12 @@ export function VitePostHog(options: VitePostHogProps): Plugin {
         attrs: {
           type: "text/javascript",
         },
-        children: constructScript(options.apiKey, options.hostUrl),
+        children: constructScript(
+          options.apiKey,
+          options.hostUrl,
+          options.isDevModeOn ?? false,
+          options.config ?? {}
+        ),
       };
       return [injectedTag];
     },
