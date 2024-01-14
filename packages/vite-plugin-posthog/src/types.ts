@@ -5,11 +5,13 @@ type PostHogConfigOptions = Omit<
   "api_host" | "opt_out_capturing_by_default"
 >;
 
-export type VitePostHogProps = {
+export type VitePostHogOptionsConfig = Partial<PostHogConfigOptions>;
+
+export type VitePostHogOptions = {
   apiKey: string;
   hostUrl: string;
   isDevModeOn?: boolean;
-  config?: Partial<PostHogConfigOptions>;
+  config?: VitePostHogOptionsConfig;
 };
 
 export type PostHog = typeof posthogJs;

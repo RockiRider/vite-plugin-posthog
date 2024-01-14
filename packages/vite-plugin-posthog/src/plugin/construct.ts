@@ -1,20 +1,30 @@
+import { VitePostHogOptionsConfig } from "../types";
+
 const BASE_SCRIPT = `!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);`;
 
-const constructInit = (key: string, hostUrl: string) =>
-  `posthog.init('${key}', { api_host: '${hostUrl}',  })`;
+const constructInit = (
+  key: string,
+  hostUrl: string,
+  extraConfig: VitePostHogOptionsConfig
+) =>
+  `posthog.init('${key}', { api_host: '${hostUrl}', opt_out_capturing_by_default: true})`;
 
 const constructDevModeInit = (
   key: string,
-  hostUrl: string
+  hostUrl: string,
+  extraConfig: VitePostHogOptionsConfig
 ) => `if (!window.location.host.includes('127.0.0.1') && !window.location.host.includes('localhost')) {
-  ${constructInit(key, hostUrl)}
+  ${constructInit(key, hostUrl, extraConfig)}
 }`;
 
 export const constructScript = (
   key: string,
   hostUrl: string,
-  isDevModeOn: boolean
+  isDevModeOn: boolean,
+  extraConfig: VitePostHogOptionsConfig
 ) => `${BASE_SCRIPT}
 ${
-  isDevModeOn ? constructDevModeInit(key, hostUrl) : constructInit(key, hostUrl)
+  isDevModeOn
+    ? constructDevModeInit(key, hostUrl, extraConfig)
+    : constructInit(key, hostUrl, extraConfig)
 }`;
