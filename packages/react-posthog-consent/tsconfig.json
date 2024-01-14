@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+      "module": "ESNext",
+      "target": "esnext",
+      "moduleResolution": "node",
+      "strict": true,
+      "declaration": true,
+      "noUnusedLocals": true,
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "noImplicitAny": true,
+      "outDir": "dist",
+      "lib": ["dom", "esnext"],
+      "types": [ "node"],
+      "sourceMap": true,
+      "noEmitOnError": true,
+    },
+    "include": ["src/**/*"],
+    "exclude": ["**/dist", "**/node_modules"]
+  }
