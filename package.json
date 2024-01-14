@@ -4,13 +4,12 @@
   "scripts": {
     "build": "turbo build --filter=vite-plugin-posthog",
     "dev": "turbo dev --filter=example-vite",
+    "example:build": "turbo build --filter=example-vite",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "@playwright/test": "^1.40.1",
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
     "@types/node": "^20.11.0",
     "prettier": "^3.1.1",
     "turbo": "latest"
