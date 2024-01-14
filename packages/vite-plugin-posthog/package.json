@@ -2,13 +2,16 @@
     "name": "vite-plugin-posthog",
     "version": "0.1.0",
     "scripts": {
-      "build": "tsup src/index.ts --sourcemap --dts --minify --format esm --silent"
+      "build": "tsup"
     },
     "main": "dist/index.js",
     "module": "dist/index.js",
     "exports": {
       "import": "./dist/index.js"
     },
+    "files": [
+      "dist", "dist/react"
+    ],
     "types": "dist/index.d.ts",
     "typings": "dist/index.d.ts",
     "type": "module",

@@ -1,0 +1,27 @@
+{
+    "name": "vite-plugin-posthog-react",
+    "version": "1.0.0",
+    "license": "MIT",
+    "main": "dist/umd/index.js",
+    "module": "dist/esm/index.js",
+    "types": "dist/types",
+    "files": [
+        "dist/*",
+        "README.md"
+    ],
+    "peerDependencies": {
+        "@types/react": ">=16.8.0",
+        "posthog-js": "*",
+        "react": ">=16.8.0"
+    },
+    "peerDependenciesMeta": {
+        "@types/react": {
+            "optional": true
+        }
+    },
+    "devDependencies": {
+        "posthog-js": "^1.9.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    }
+}
