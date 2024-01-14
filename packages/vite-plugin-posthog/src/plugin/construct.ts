@@ -25,6 +25,6 @@ export const constructScript = (
 ) => `${BASE_SCRIPT}
 ${
   isDevModeOn
-    ? constructDevModeInit(key, hostUrl, extraConfig)
-    : constructInit(key, hostUrl, extraConfig)
+    ? constructInit(key, hostUrl, extraConfig)
+    : constructDevModeInit(key, hostUrl, extraConfig)
 }`;

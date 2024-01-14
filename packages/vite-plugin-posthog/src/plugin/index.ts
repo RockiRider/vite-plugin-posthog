@@ -3,11 +3,13 @@ import { VitePostHogOptions } from "../types.js";
 import { constructScript } from "./construct.js";
 
 /**
- *
+ * TODO: Add description
  * @param options
  * @returns
  */
 export function VitePostHog(options: VitePostHogOptions): Plugin {
+  const { apiKey, hostUrl, isDevModeOn, config } = options;
+
   return {
     name: "vite-plugin-posthog",
     enforce: "post",
@@ -19,10 +21,10 @@ export function VitePostHog(options: VitePostHogOptions): Plugin {
           type: "text/javascript",
         },
         children: constructScript(
-          options.apiKey,
-          options.hostUrl,
-          options.isDevModeOn ?? false,
-          options.config ?? {}
+          apiKey,
+          hostUrl,
+          isDevModeOn ?? false,
+          config ?? {}
         ),
       };
       return [injectedTag];
