@@ -12,7 +12,7 @@
     "dev": {
       "cache": false,
       "persistent": true,
-      "dependsOn": ["vite-plugin-posthog#build"]
+      "dependsOn": ["vite-plugin-posthog#build", "react-posthog-consent#build"]
     }
   }
 }
