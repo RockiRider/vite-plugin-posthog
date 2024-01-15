@@ -10,5 +10,5 @@ export default defineConfig({
   entry: {
     index: "src/index.ts",
   },
-  outDir: "dist",
+  outDir: "../dist/react",
 });

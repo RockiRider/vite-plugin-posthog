@@ -2,15 +2,20 @@
     "name": "vite-plugin-posthog",
     "version": "0.1.0",
     "scripts": {
-      "build": "tsup"
+      "build": "tsup",
+      "postbuild": "cd react && npm install && npm run build"
+      
     },
     "main": "dist/index.js",
     "module": "dist/index.js",
     "exports": {
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "react": "./dist/index.d.ts"
     },
-    "files": [
-      "dist", "dist/react"
+    "files":[
+      "dist/*",
+      "react/dist/*",
+      "react/package.json"
     ],
     "types": "dist/index.d.ts",
     "typings": "dist/index.d.ts",
