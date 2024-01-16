@@ -10,19 +10,19 @@
     "typings": "src/core/index.d.ts",
     "exports": {
         ".": {
-          "import": "./src/core/index.ts",
-          "require": "./dist/index.js"
+            "import": "./src/core/index.ts",
+            "require": "./dist/index.js"
         },
         "./react": {
-          "import": "./src/react/index.ts",
-          "require": "./dist/react.js"
+            "import": "./src/react/index.ts",
+            "require": "./dist/react.js"
         }
     },
     "type": "module",
     "devDependencies": {
+        "@rollup/plugin-typescript": "^11.1.6",
         "@rollup/pluginutils": "^5.1.0",
-        "rollup": "^4.9.5",
-        "rollup-plugin-typescript2": "^0.36.0"
+        "rollup": "^4.9.5"
     },
     "dependencies": {
         "posthog-js": "^1.9.0",
