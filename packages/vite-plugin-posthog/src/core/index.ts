@@ -1,7 +1,7 @@
 export { VitePostHogOptions, PostHog } from "./types";
 import { HtmlTagDescriptor, Plugin } from "vite";
 import { VitePostHogOptions } from "./types";
-import { constructScript } from "./plugin/construct";
+import { constructScript } from "./construct";
 
 /**
  * TODO: Add description
