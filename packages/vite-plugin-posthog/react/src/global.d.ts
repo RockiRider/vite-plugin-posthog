@@ -1,4 +1,4 @@
-import { PostHog } from "../../types.js";
+import { PostHog } from "./types";
 
 declare global {
   interface Window {

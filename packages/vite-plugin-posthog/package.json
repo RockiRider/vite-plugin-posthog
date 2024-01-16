@@ -2,32 +2,26 @@
     "name": "vite-plugin-posthog",
     "version": "0.1.0",
     "scripts": {
-      "build": "tsup",
-      "postbuild": "cd react && npm install && npm run build"
-      
+        "build": "tsc && tsup",
+        "postbuild": "cd react && npm install && npm run build && bash ../cleanup.sh"
     },
     "main": "dist/index.js",
     "module": "dist/index.js",
     "exports": {
-      "import": "./dist/index.js",
-      "react": "./dist/index.d.ts"
+        "import": "./dist/index.js",
+        "react": "./dist/index.d.ts"
     },
-    "files":[
-      "dist/*",
-      "react/dist/*",
-      "react/package.json"
-    ],
-    "types": "dist/index.d.ts",
-    "typings": "dist/index.d.ts",
+    "types": "src/index.d.ts",
+    "typings": "src/index.d.ts",
     "type": "module",
     "devDependencies": {
-      "@rollup/pluginutils": "^5.0.3",
+      "@rollup/pluginutils": "^5.1.0",
       "tsup": "^8.0.1"
     },
     "dependencies": {
-    "vite": "^5.0.8",
-    "posthog-js": "^1.9.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+        "posthog-js": "^1.9.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "vite": "^5.0.8"
     }
-  }
+}

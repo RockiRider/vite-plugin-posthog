@@ -3,7 +3,7 @@ import { defineConfig } from "tsup";
 export default defineConfig({
   splitting: true,
   clean: true,
-  dts: { resolve: true },
+  dts: true,
   minify: true,
   format: ["esm"],
   silent: true,

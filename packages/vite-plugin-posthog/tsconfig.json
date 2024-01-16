@@ -2,7 +2,7 @@
     "compilerOptions": {
       "module": "ESNext",
       "target": "esnext",
-      "moduleResolution": "node",
+      "moduleResolution": "Bundler",
       "strict": true,
       "declaration": true,
       "noUnusedLocals": true,
@@ -12,9 +12,8 @@
       "outDir": "dist",
       "lib": ["dom", "esnext"],
       "types": ["vite/client", "node"],
-      "sourceMap": true,
       "noEmitOnError": true,
     },
-    "include": ["src/**/*", "./package.json"],
+    "include": ["src/**/*", "package.json"],
     "exclude": ["**/dist", "**/node_modules"]
   }
