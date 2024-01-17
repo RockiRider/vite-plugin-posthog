@@ -4,27 +4,26 @@
     "scripts": {
         "build": "rollup -c"
     },
-    "main": "dist/index.js",
-    "module": "src/core/index.ts",
     "types": "src/core/index.d.ts",
     "typings": "src/core/index.d.ts",
     "exports": {
         ".": {
-            "import": "./src/core/index.ts",
-            "require": "./dist/index.js"
+            "import": "./dist/core/index.js"
         },
         "./react": {
-            "import": "./src/react/index.ts",
-            "require": "./dist/react.js"
+            "import": "./dist/react/index.js"
         }
+    },
+    "peerDependencies": {
+        "react": "^16.8.0 || ^17.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0"
     },
     "type": "module",
     "devDependencies": {
+        "@rollup/plugin-node-resolve": "^15.2.3",
         "@rollup/plugin-typescript": "^11.1.6",
         "@rollup/pluginutils": "^5.1.0",
-        "rollup": "^4.9.5"
-    },
-    "dependencies": {
+        "rollup": "^4.9.5",
         "posthog-js": "^1.9.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",

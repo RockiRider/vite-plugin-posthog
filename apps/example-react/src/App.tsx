@@ -2,11 +2,16 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { useVitePostHog } from "vite-plugin-posthog/react";
+import {
+  useVitePostHog,
+  useFeatureFlagEnabled,
+} from "vite-plugin-posthog/react";
 
 function App() {
   const [count, setCount] = useState(0);
   const posthog = useVitePostHog();
+
+  const showWelcomeMessage = useFeatureFlagEnabled("welcome-msg");
 
   const handleClick = () => {
     posthog?.capture("count incremented");
@@ -24,6 +29,7 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+      {showWelcomeMessage && <h2>Welcome to Vite + React!</h2>}
       <div className="card">
         <button onClick={handleClick}>count is {count}</button>
         <p>
