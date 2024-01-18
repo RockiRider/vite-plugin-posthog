@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
         run: npm ci
 
       - name: Build
@@ -35,8 +35,8 @@ jobs:
         needs: vite_plugin_posthog_changed
         if: steps.vite_plugin_posthog_changed.outputs.changed == 'true' # Check output if it changed or not (returns a boolean)
         uses: mikeal/merge-release@master
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-            DEPLOY_DIR: packages/vite-plugin-posthog/dist
-            SRC_PACKAGE_DIR: packages/vite-plugin-posthog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          DEPLOY_DIR: packages/vite-plugin-posthog/dist
+          SRC_PACKAGE_DIR: packages/vite-plugin-posthog
