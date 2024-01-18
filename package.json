@@ -6,7 +6,9 @@
     "dev": "turbo dev --filter=example-react",
     "example:build": "turbo build --filter=example-react",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "vpp:build": "turbo build --filter=vite-plugin-posthog",
+    "rpc:build": "turbo build --filter=react-posthog-consent"
   },
   "devDependencies": {
     "@playwright/test": "^1.40.1",

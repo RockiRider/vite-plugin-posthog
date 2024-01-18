@@ -1,0 +1,42 @@
+name: "Vite Plugin Release"
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Necessary so we have commit history to compare to
+
+      - name: Install Deps
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+        run: npm ci
+
+      - name: Build
+        run: npm run vpp:build
+
+      - name: Check vite-plugin-posthog version
+        id: vite_plugin_posthog_changed
+        uses: Octopus-Moneycoach/version-has-changed@v1
+        with:
+          path: packages/vite-plugin-posthog/package.json #
+          from: HEAD^1
+          to: HEAD^
+
+      # Do something more meaningful here, like push to NPM, do heavy computing, etc.
+      - name: Publish
+        needs: vite_plugin_posthog_changed
+        if: steps.vite_plugin_posthog_changed.outputs.changed == 'true' # Check output if it changed or not (returns a boolean)
+        uses: mikeal/merge-release@master
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+            DEPLOY_DIR: packages/vite-plugin-posthog/dist
+            SRC_PACKAGE_DIR: packages/vite-plugin-posthog
