@@ -1,6 +1,11 @@
 {
     "name": "vite-plugin-posthog",
     "version": "1.0.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/RockiRider/posthog/",
+        "directory": "packages/vite-plugin-posthog"
+      },
     "scripts": {
         "build": "rollup -c"
     },
