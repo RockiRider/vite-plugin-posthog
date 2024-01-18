@@ -12,11 +12,13 @@ jobs:
         with:
           fetch-depth: 0 # Necessary so we have commit history to compare to
 
-      - name: Install Deps
+      - name: Setup
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "npm"
+
+      - name: Install Deps
         run: npm ci
 
       - name: Build
