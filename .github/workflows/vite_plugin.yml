@@ -4,7 +4,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  main:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -34,7 +34,6 @@ jobs:
 
       # Do something more meaningful here, like push to NPM, do heavy computing, etc.
       - name: Publish
-        needs: vite_plugin_posthog_changed
         if: steps.vite_plugin_posthog_changed.outputs.changed == 'true' # Check output if it changed or not (returns a boolean)
         uses: mikeal/merge-release@master
         env:
