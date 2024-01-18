@@ -1,6 +1,6 @@
 {
     "name": "vite-plugin-posthog",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "scripts": {
         "build": "rollup -c"
     },
@@ -18,6 +18,10 @@
         "react": "^16.8.0 || ^17.0.0",
         "react-dom": "^16.8.0 || ^17.0.0"
     },
+    "files": [
+        "dist",
+        "package.json"
+    ],
     "type": "module",
     "devDependencies": {
         "@rollup/plugin-node-resolve": "^15.2.3",
