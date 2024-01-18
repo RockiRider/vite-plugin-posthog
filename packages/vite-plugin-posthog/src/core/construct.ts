@@ -6,8 +6,7 @@ const constructInit = (
   key: string,
   hostUrl: string,
   extraConfig: VitePostHogOptionsConfig
-) =>
-  `posthog.init('${key}', { api_host: '${hostUrl}', opt_out_capturing_by_default: true})`;
+) => `posthog.init('${key}', { api_host: '${hostUrl}'})`;
 
 const constructDevModeInit = (
   key: string,

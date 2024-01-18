@@ -1,2 +1,1 @@
-export * from "./useVitePostHog";
-export * from "./expose";
+export * from "./hooks/index";
