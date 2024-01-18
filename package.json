@@ -8,7 +8,7 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "vpp:build": "turbo build --filter=vite-plugin-posthog",
-    "vpp:deploy": "./bin/deploy.sh vite-plugin-posthog",
+    "vpp:deploy": "bash ./bin/deploy.sh vite-plugin-posthog",
     "rpc:build": "turbo build --filter=react-posthog-consent",
     "rpc:deploy": "./bin/deploy.sh react-posthog-consent"
     

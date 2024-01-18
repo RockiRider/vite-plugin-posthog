@@ -5,8 +5,8 @@ SEMVER=$2
 
 check_branch() {
   CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  if [[ "$CURRENT_BRANCH" != "develop" ]]; then
-    echo "Error: not on 'develop' branch."
+  if [[ "$CURRENT_BRANCH" != "main" ]]; then
+    echo "Error: not on 'main' branch."
     exit 1
   fi
 
