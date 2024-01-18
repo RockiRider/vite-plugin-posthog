@@ -1,7 +1,8 @@
-export { VitePostHogOptions, PostHog } from "./types";
 import { HtmlTagDescriptor, Plugin } from "vite";
-import { VitePostHogOptions } from "./types";
 import { constructScript } from "./construct";
+import { VitePostHogOptions, PostHogInitConfig } from "./types";
+
+export { VitePostHogOptions, PostHog } from "./types";
 
 /**
  * TODO: Add description
@@ -10,6 +11,11 @@ import { constructScript } from "./construct";
  */
 export function VitePostHog(options: VitePostHogOptions): Plugin {
   const { apiKey, hostUrl, isDevModeOn, config } = options;
+
+  const postHogConfig: PostHogInitConfig = {
+    api_host: hostUrl,
+    ...config,
+  };
 
   return {
     name: "vite-plugin-posthog",
@@ -21,12 +27,7 @@ export function VitePostHog(options: VitePostHogOptions): Plugin {
         attrs: {
           type: "text/javascript",
         },
-        children: constructScript(
-          apiKey,
-          hostUrl,
-          isDevModeOn ?? false,
-          config ?? {}
-        ),
+        children: constructScript(apiKey, isDevModeOn ?? false, postHogConfig),
       };
       return [injectedTag];
     },

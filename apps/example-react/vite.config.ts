@@ -15,6 +15,15 @@ export default ({ mode }) => {
         apiKey: process.env.VITE_POSTHOG_KEY,
         hostUrl: "https://eu.posthog.com",
         isDevModeOn: true,
+        config: {
+          autocapture: false,
+          capture_pageview: false,
+          capture_pageleave: false,
+          disable_session_recording: true,
+          loaded: () => {
+            console.log("PostHog loaded");
+          },
+        },
       }),
     ],
   });

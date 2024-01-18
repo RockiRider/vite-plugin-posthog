@@ -13,13 +13,25 @@ function App() {
   const showWelcomeMessage = useFeatureFlagEnabled("welcome-msg");
 
   useEffect(() => {
-    posthog?.opt_in_capturing();
-    posthog?.capture("$pageview");
+    // posthog?.opt_in_capturing();
+    // posthog?.capture("$pageview");
   }, [posthog]);
 
   const handleClick = () => {
     posthog?.capture("count incremented");
     setCount((count) => count + 1);
+  };
+
+  const handleReset = () => {
+    posthog?.reset();
+  };
+
+  const handleReject = () => {
+    posthog?.opt_out_capturing();
+  };
+
+  const handleAccept = () => {
+    posthog?.opt_in_capturing();
   };
 
   return (
@@ -44,9 +56,11 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <div className="cookie-consent-area">
-        <button>Accept</button>
-        <button>Reject</button>
+        <button onClick={handleAccept}>Accept</button>
+        <button onClick={handleReject}>Reject</button>
       </div>
+
+      <button onClick={handleReset}>Reset</button>
     </>
   );
 }
