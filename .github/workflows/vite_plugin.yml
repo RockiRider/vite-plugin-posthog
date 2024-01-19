@@ -28,9 +28,9 @@ jobs:
         id: vite_plugin_posthog_changed
         uses: Octopus-Moneycoach/version-has-changed@v1
         with:
-          path: packages/vite-plugin-posthog/package.json #
-          from: HEAD^1
-          to: HEAD^
+          path: packages/vite-plugin-posthog/package.json
+          from: ${{github.event.before}}
+          to: ${{github.event.after}}
 
       # Do something more meaningful here, like push to NPM, do heavy computing, etc.
       - name: Publish
