@@ -71,7 +71,9 @@ commit_and_push() {
 run_deploy() {
   check_branch
   update_version
-  commit_and_push
+   VERSION="$(get_new_version)"
+   echo "New version: $VERSION"
+  # commit_and_push
 }
 
 run_deploy
