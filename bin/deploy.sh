@@ -41,7 +41,8 @@ update_version() {
 }
 
 get_new_version() {
-  DIR="$(dirname "$(dirname "$(realpath "$0")")")"
+  DIR=$(node -e "console.log(require('path').resolve(process.env.PWD).replace(/\\\\/g, '/'))")
+  
   PACKAGE_JSON="$DIR/packages/$PACKAGE_NAME/package.json"
 
   if ! [ -x "$(command -v node)" ]; then
@@ -49,7 +50,7 @@ get_new_version() {
     exit 1
   fi
 
-  if ! [ -f "$DIR/package.json" ]; then
+  if ! [ -f "$PACKAGE_JSON" ]; then
     echo "Error: $PACKAGE_JSON doesn't exist"
     exit 1
   fi
@@ -71,9 +72,7 @@ commit_and_push() {
 run_deploy() {
   check_branch
   update_version
-   VERSION="$(get_new_version)"
-   echo "New version: $VERSION"
-  # commit_and_push
+  commit_and_push
 }
 
 run_deploy
