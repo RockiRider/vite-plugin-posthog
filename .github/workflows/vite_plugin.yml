@@ -24,3 +24,21 @@ jobs:
       - name: "Output"
         run: echo "Version changed!"
         if: ${{ steps.publish.outputs.type }}
+
+      - name: Bump version and push tag
+        if: ${{ steps.publish.outputs.type }}
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tag_prefix: vite-plugin-posthog_
+          dry_run: true
+
+      - name: Create a GitHub release
+        if: ${{ steps.publish.outputs.type }}
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
+          draft: true
