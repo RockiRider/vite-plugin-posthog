@@ -4,40 +4,36 @@ on:
     branches: [main]
 
 jobs:
-  main:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
         with:
-          fetch-depth: 0 # Necessary so we have commit history to compare to
-
-      - name: Setup
-        uses: actions/setup-node@v4
+          node-version: "20"
+      - run: npm ci
+      - run: npm run vpp:build
+      - uses: JS-DevTools/npm-publish@v3
+        id: publish
         with:
-          node-version: 20
-          cache: "npm"
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
+          package: packages/vite-plugin-posthog
+          provenance: true
 
-      - name: Install Deps
-        run: npm ci
-
-      - name: Build
-        run: npm run vpp:build
-
-      - name: Check vite-plugin-posthog version
-        id: vite_plugin_posthog_changed
-        uses: Octopus-Moneycoach/version-has-changed@v1
+      - name: Bump version and push tag
+        if: ${{ steps.publish.outputs.type }}
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.1
         with:
-          path: packages/vite-plugin-posthog/package.json
-          from: ${{github.event.before}}
-          to: ${{github.event.after}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_tag: v${{steps.publish.outputs.version}}
+          tag_prefix: vite-plugin-posthog_
+          
 
-      # Do something more meaningful here, like push to NPM, do heavy computing, etc.
-      - name: Publish
-        if: steps.vite_plugin_posthog_changed.outputs.changed == 'true' # Check output if it changed or not (returns a boolean)
-        uses: mikeal/merge-release@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-          DEPLOY_DIR: packages/vite-plugin-posthog/dist
-          SRC_PACKAGE_DIR: packages/vite-plugin-posthog
+      - name: Create a GitHub release
+        if: ${{ steps.publish.outputs.type }}
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
