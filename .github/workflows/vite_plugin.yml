@@ -1,43 +1,34 @@
 name: "Vite Plugin Release"
 on:
   push:
-    branches: [main]
+    branches: [test/workflows]
 
 jobs:
-  main:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
+  version_check: 
+    name: "Version Check"
+    runs-on: "ubuntu-latest"
+    steps: 
+       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Necessary so we have commit history to compare to
 
-      - name: Setup
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "npm"
-
-      - name: Install Deps
-        run: npm ci
-
-      - name: Build
-        run: npm run vpp:build
-
-      - name: Check vite-plugin-posthog version
-        id: vite_plugin_posthog_changed
+        - name: Check vite-plugin-posthog version
+        id: vpp_check
         uses: Octopus-Moneycoach/version-has-changed@v1
         with:
           path: packages/vite-plugin-posthog/package.json
           from: ${{github.event.before}}
           to: ${{github.event.after}}
+    outputs: 
+      vpp_changed: ${{ steps.vpp_check.outputs.changed}}
 
-      # Do something more meaningful here, like push to NPM, do heavy computing, etc.
-      - name: Publish
-        if: steps.vite_plugin_posthog_changed.outputs.changed == 'true' # Check output if it changed or not (returns a boolean)
-        uses: mikeal/merge-release@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-          DEPLOY_DIR: packages/vite-plugin-posthog/dist
-          SRC_PACKAGE_DIR: packages/vite-plugin-posthog
+
+  main:
+    name: "Main"
+    needs: version_check
+    if: needs.version_check.outputs.vpp_changed
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Task"
+        run: echo "Has changed and is running"
