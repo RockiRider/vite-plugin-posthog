@@ -4,31 +4,23 @@ on:
     branches: [test/workflows]
 
 jobs:
-  version_check: 
-    name: "Version Check"
-    runs-on: "ubuntu-latest"
-    steps: 
-        - name: Checkout
-          uses: actions/checkout@v4
-          with:
-            fetch-depth: 0 # Necessary so we have commit history to compare to
-
-        - name: Check vite-plugin-posthog version
-          id: vpp_check
-          uses: Octopus-Moneycoach/version-has-changed@v1
-          with:
-            path: packages/vite-plugin-posthog/package.json
-            from: ${{github.event.before}}
-            to: ${{github.event.after}}
-    outputs: 
-      vpp_changed: ${{ steps.vpp_check.outputs.changed}}
-
-
-  main:
-    name: "Main"
-    needs: version_check
-    if: needs.version_check.outputs.vpp_changed
+  publish:
     runs-on: ubuntu-latest
     steps:
-        - name: "Task"
-          run: echo "Has changed and is running"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+      - run: npm ci
+      - run: npm test
+      - uses: JS-DevTools/npm-publish@v3
+        id: publish
+        with:
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
+          package: packages/vite-plugin-posthog
+          provenance: true
+          dry-run: true
+
+      - name: "Output"
+        run: echo "Version changed!"
+        if: ${{ steps.publish.outputs.type }}
