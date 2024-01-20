@@ -8,10 +8,10 @@ jobs:
     name: "Version Check"
     runs-on: "ubuntu-latest"
     steps: 
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # Necessary so we have commit history to compare to
+        - name: Checkout
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 0 # Necessary so we have commit history to compare to
 
         - name: Check vite-plugin-posthog version
         id: vpp_check
@@ -30,5 +30,5 @@ jobs:
     if: needs.version_check.outputs.vpp_changed
     runs-on: ubuntu-latest
     steps:
-      - name: "Task"
-        run: echo "Has changed and is running"
+        - name: "Task"
+          run: echo "Has changed and is running"
