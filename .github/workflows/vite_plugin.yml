@@ -14,12 +14,12 @@ jobs:
             fetch-depth: 0 # Necessary so we have commit history to compare to
 
         - name: Check vite-plugin-posthog version
-        id: vpp_check
-        uses: Octopus-Moneycoach/version-has-changed@v1
-        with:
-          path: packages/vite-plugin-posthog/package.json
-          from: ${{github.event.before}}
-          to: ${{github.event.after}}
+          id: vpp_check
+          uses: Octopus-Moneycoach/version-has-changed@v1
+          with:
+            path: packages/vite-plugin-posthog/package.json
+            from: ${{github.event.before}}
+            to: ${{github.event.after}}
     outputs: 
       vpp_changed: ${{ steps.vpp_check.outputs.changed}}
 
