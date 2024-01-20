@@ -1,6 +1,12 @@
 {
     "name": "vite-plugin-posthog",
     "version": "1.0.2",
+    "keywords": [
+        "vite",
+        "posthog",
+        "analytics",
+        "plugin"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/RockiRider/posthog/",

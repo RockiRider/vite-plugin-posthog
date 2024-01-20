@@ -18,7 +18,6 @@ jobs:
         with:
           token: ${{ secrets.NPM_AUTH_TOKEN }}
           package: packages/vite-plugin-posthog
-          provenance: true
 
       - name: Bump version and push tag
         if: ${{ steps.publish.outputs.type }}
