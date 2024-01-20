@@ -2,7 +2,7 @@
 import { defineConfig } from "rollup";
 import typescript from "@rollup/plugin-typescript";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
-import copy from "rollup-plugin-copy";
+// import copy from "rollup-plugin-copy";
 
 const config = defineConfig([
   {
@@ -15,12 +15,6 @@ const config = defineConfig([
       typescript({
         outDir: "dist/core",
         include: ["src/core/**/*"],
-      }),
-      copy({
-        targets: [
-          { src: "package.json", dest: "dist/" },
-          { src: "README.md", dest: "dist/" },
-        ],
       }),
     ],
   },
