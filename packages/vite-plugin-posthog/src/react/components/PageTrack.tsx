@@ -4,7 +4,7 @@ import { useVitePostHog } from "../hooks/useVitePostHog";
 interface PageTrackProps {
   uniquePageTitle: string;
 }
-const PageTrack = ({
+export const PageTrack = ({
   uniquePageTitle,
   children,
 }: PropsWithChildren<PageTrackProps>) => {
@@ -18,5 +18,3 @@ const PageTrack = ({
 
   return <>{children}</>;
 };
-
-export default PageTrack;
