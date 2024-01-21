@@ -1,6 +1,6 @@
 # vite-plugin-posthog
 
-A package that allows you to integrate with PostHog specifically designed with Vite in mind. Currently only compatible with React, but support for Vue and Svelte is planned.
+A package that allows you to integrate with PostHog specifically designed with Vite in mind. Currently compatible with all frameworks/libraries built by Vite, however we provide additional React Hooks and Components to make it easier to get started with React. Additional support for other frameworks/libraries is planned, in order to make it easier to get started with PostHog in your favourite framework/library.
 
 ## Advantages over official Posthog React SDK
 
