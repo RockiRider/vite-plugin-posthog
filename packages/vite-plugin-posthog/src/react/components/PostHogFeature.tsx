@@ -3,10 +3,16 @@ import {
   useFeatureFlagVariantKey,
   useVitePostHog,
 } from "../hooks";
-import React, { useCallback, useEffect, useRef, ReactNode } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  ReactNode,
+  HTMLProps,
+} from "react";
 import { PostHog } from "../types";
 
-export type PostHogFeatureProps = React.HTMLProps<HTMLDivElement> & {
+export type PostHogFeatureProps = HTMLProps<HTMLDivElement> & {
   flag: string;
   children: ReactNode | ((payload: any) => ReactNode);
   fallback?: ReactNode;
