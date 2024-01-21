@@ -1,6 +1,6 @@
 {
     "name": "vite-plugin-posthog",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "homepage": "https://github.com/RockiRider/posthog/tree/main/packages/vite-plugin-posthog",
     "keywords": [
         "vite",
