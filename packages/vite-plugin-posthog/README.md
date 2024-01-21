@@ -75,3 +75,10 @@ const App = () => {
 | useFeatureFlagVariantKey | Returns the variant key of the feature flag.                                                    |
 | useActiveFeatureFlags    | Returns an array of active feature flags.                                                       |
 | useGetEnabledSurvey      | Returns a posthog survey matching the id you provided, if the user is able to access the survey |
+
+### Available Components
+
+| Component      | Description                                                                                                |
+| -------------- | ---------------------------------------------------------------------------------------------------------- |
+| PostHogFeature | A component that allows you to render different content based on whether a feature flag is enabled or not. |
+| PageTrack      | A component that allows you to track that a specific route has been visited, on first render               |
