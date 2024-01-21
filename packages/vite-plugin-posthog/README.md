@@ -7,6 +7,7 @@ A package that allows you to integrate with PostHog specifically designed with V
 - No need to wrap your app in a `<PosthogProvider />` component
 - Easy to get started with, just add it to your `vite.config.js` file
 - Easily turn off tracking in development mode
+- Additional Hooks and Components to get you up and running quickly
 
 ## Installation
 
@@ -63,3 +64,14 @@ const App = () => {
   );
 };
 ```
+
+### Available Hooks
+
+| Hook                     | Description                                                                                     |
+| ------------------------ | ----------------------------------------------------------------------------------------------- |
+| useVitePostHog           | Returns the initialized posthog library                                                         |
+| useFeatureFlagEnabled    | Returns a boolean indicating whether the feature flag is enabled.                               |
+| useFeatureFlagPayload    | Returns the payload of the feature flag.                                                        |
+| useFeatureFlagVariantKey | Returns the variant key of the feature flag.                                                    |
+| useActiveFeatureFlags    | Returns an array of active feature flags.                                                       |
+| useGetEnabledSurvey      | Returns a posthog survey matching the id you provided, if the user is able to access the survey |
