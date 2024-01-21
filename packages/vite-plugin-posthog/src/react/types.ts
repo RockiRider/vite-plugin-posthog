@@ -1,4 +1,4 @@
-import posthogJs, { Survey } from "posthog-js";
+import posthogJs, { Survey, JsonType } from "posthog-js";
 
 export type PostHog = typeof posthogJs;
-export { Survey };
+export { Survey, JsonType };

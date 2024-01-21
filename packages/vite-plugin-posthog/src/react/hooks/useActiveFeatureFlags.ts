@@ -5,8 +5,6 @@ export function useActiveFeatureFlags(): string[] | undefined {
   const client = useVitePostHog();
 
   const [featureFlags, setFeatureFlags] = useState<string[]>([]);
-  // would be nice to have a default value above however it's not possible due
-  // to a hydration error when using nextjs
 
   useEffect(() => {
     return client?.onFeatureFlags((flags) => {
