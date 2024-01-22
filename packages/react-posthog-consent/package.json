@@ -2,17 +2,46 @@
     "name": "react-posthog-consent",
     "version": "0.1.0",
     "license": "MIT",
-    "scripts": {
-        "build": "tsup src/index.ts --sourcemap --dts --minify --format esm --silent"
-    },
-    "main": "dist/index.js",
-    "module": "dist/index.js",
-    "exports": {
-        "import": "./dist/index.js"
-    },
-    "types": "dist/index.d.ts",
-    "typings": "dist/index.d.ts",
     "type": "module",
+    "keywords": [
+        "react",
+        "posthog",
+        "analytics",
+        "consent",
+        "gdpr"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/RockiRider/posthog.git",
+        "directory": "packages/react-posthog-consent"
+    },
+    "scripts": {
+        "build": "rollup -c"
+    },
+    "exports": {
+        ".": {
+            "import": "./dist/core/index.js"
+        },
+        "./vite": {
+            "import": "./dist/react/index.js"
+        }
+    },
+    "types": "src/core/index.d.ts",
+    "typings": "src/core/index.d.ts",
+    "files": [
+        "dist",
+        "package.json",
+        "README.md"
+    ],
+    "peerDependencies": {
+        "react": ">=16.8.0",
+        "@types/react": ">=16.8.0"
+    },
+    "peerDependenciesMeta": {
+        "@types/react": {
+            "optional": true
+        }
+    },
     "devDependencies": {
         "posthog-js": "^1.9.0",
         "react": "^18.2.0",

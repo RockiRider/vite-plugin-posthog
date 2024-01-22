@@ -1,6 +1,7 @@
 {
     "name": "vite-plugin-posthog",
     "version": "1.0.4",
+    "type": "module",
     "homepage": "https://github.com/RockiRider/posthog/tree/main/packages/vite-plugin-posthog",
     "keywords": [
         "vite",
@@ -27,6 +28,11 @@
             "import": "./dist/react/index.js"
         }
     },
+    "files": [
+        "dist",
+        "package.json",
+        "README.md"
+    ],
     "peerDependencies": {
         "react": ">=16.8.0",
         "@types/react": ">=16.8.0"
@@ -36,12 +42,6 @@
             "optional": true
         }
     },
-    "files": [
-        "dist",
-        "package.json",
-        "README.md"
-    ],
-    "type": "module",
     "devDependencies": {
         "@rollup/plugin-node-resolve": "^15.2.3",
         "@rollup/plugin-typescript": "^11.1.6",
