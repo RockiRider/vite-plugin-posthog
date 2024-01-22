@@ -1,4 +1,3 @@
-// rollup.config.mjs
 import { defineConfig } from "rollup";
 import typescript from "@rollup/plugin-typescript";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
@@ -26,11 +25,10 @@ const config = defineConfig([
     },
     plugins: [
       typescript({ outDir: "dist/vite", include: ["src/vite/**/*"] }),
-      nodeResolve(),
+      // nodeResolve(),
     ],
     external: ["react", "react-dom", "vite-plugin-posthog"],
   },
-  // Add configurations for other frameworks as needed
 ]);
 
 export default config;
