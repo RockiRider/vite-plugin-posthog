@@ -13,6 +13,7 @@
         "url": "git+https://github.com/RockiRider/posthog.git",
         "directory": "packages/vite-plugin-posthog"
     },
+    "license": "MIT",
     "scripts": {
         "build": "rollup -c"
     },
