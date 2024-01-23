@@ -17,12 +17,8 @@ export default ({ mode }) => {
         isDevModeOn: true,
         config: {
           autocapture: false,
-          capture_pageview: false,
-          capture_pageleave: false,
           disable_session_recording: true,
-          loaded: () => {
-            console.log("PostHog loaded");
-          },
+          opt_out_capturing_by_default: true,
         },
       }),
     ],

@@ -1,22 +1,63 @@
 {
     "name": "react-posthog-consent",
     "version": "0.1.0",
-    "scripts": {
-        "build": "tsup src/index.ts --sourcemap --dts --minify --format esm --silent"
-    },
-    "main": "dist/index.js",
-    "module": "dist/index.js",
-    "exports": {
-        "import": "./dist/index.js"
-    },
-    "types": "dist/index.d.ts",
-    "typings": "dist/index.d.ts",
+    "license": "MIT",
     "type": "module",
+    "keywords": [
+        "react",
+        "posthog",
+        "analytics",
+        "consent",
+        "gdpr"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/RockiRider/posthog.git",
+        "directory": "packages/react-posthog-consent"
+    },
+    "scripts": {
+        "build": "rollup -c"
+    },
+    "exports": {
+        ".": {
+            "import": "./dist/core/index.js"
+        },
+        "./vite": {
+            "import": "./dist/vite/index.js"
+        }
+    },
+    "types": "src/core/index.d.ts",
+    "typings": "src/core/index.d.ts",
+    "files": [
+        "dist",
+        "package.json",
+        "README.md"
+    ],
+    "peerDependencies": {
+        "@types/react": ">=16.8.0",
+        "react": ">=16.8.0",
+        "posthog-js": ">=1.9.0",
+        "vite-plugin-posthog": "^1.0.4"
+    },
+    "peerDependenciesMeta": {
+        "@types/react": {
+            "optional": true
+        },
+        "posthog-js": {
+            "optional": true
+        },
+        "vite-plugin-posthog": {
+            "optional": true
+        }
+    },
     "devDependencies": {
-        "posthog-js": "^1.9.0",
+        "@rollup/plugin-commonjs": "^25.0.7",
+        "@rollup/plugin-node-resolve": "^15.2.3",
+        "@rollup/plugin-typescript": "^11.1.6",
+        "@rollup/pluginutils": "^5.1.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "tsup": "^8.0.1"
+        "rollup": "^4.9.5"
     },
     "dependencies": {
         "universal-cookie": "^7.0.1"

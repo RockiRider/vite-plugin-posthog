@@ -6,11 +6,16 @@ import {
   useVitePostHog,
   useFeatureFlagEnabled,
 } from "vite-plugin-posthog/react";
+import { usePostHogConsent } from "react-posthog-consent/vite";
+
+const COOKIE_PREFIX = "my_app_name";
 
 function App() {
   const [count, setCount] = useState(0);
   const posthog = useVitePostHog();
   const showWelcomeMessage = useFeatureFlagEnabled("welcome-msg");
+  const { acceptConsent, rejectConsent, hasConsent, overRideReset } =
+    usePostHogConsent(COOKIE_PREFIX);
 
   const handleClick = () => {
     posthog?.capture("count incremented");
@@ -18,15 +23,15 @@ function App() {
   };
 
   const handleReset = () => {
-    posthog?.reset();
+    overRideReset();
   };
 
   const handleReject = () => {
-    posthog?.opt_out_capturing();
+    rejectConsent();
   };
 
   const handleAccept = () => {
-    posthog?.opt_in_capturing();
+    acceptConsent();
   };
 
   return (
@@ -50,11 +55,14 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <div className="cookie-consent-area">
-        <button onClick={handleAccept}>Accept</button>
-        <button onClick={handleReject}>Reject</button>
-      </div>
-
+      {hasConsent() ? (
+        <p>Consent has been given</p>
+      ) : (
+        <div className="cookie-consent-area">
+          <button onClick={handleAccept}>Accept</button>
+          <button onClick={handleReject}>Reject</button>
+        </div>
+      )}
       <button onClick={handleReset}>Reset</button>
     </>
   );

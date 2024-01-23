@@ -1,7 +1,7 @@
-// rollup.config.mjs
 import { defineConfig } from "rollup";
 import typescript from "@rollup/plugin-typescript";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
 
 const config = defineConfig([
   {
@@ -16,20 +16,21 @@ const config = defineConfig([
         include: ["src/core/**/*"],
       }),
     ],
+    external: ["react", "react-dom", "posthog-js"],
   },
   {
-    input: "src/react/index.ts",
+    input: "src/vite/index.ts",
     output: {
-      dir: "dist/react",
+      dir: "dist/vite",
       format: "es",
     },
     plugins: [
-      typescript({ outDir: "dist/react", include: ["src/react/**/*"] }),
+      typescript({ outDir: "dist/vite", include: ["src/vite/**/*"] }),
+      commonjs(),
       nodeResolve(),
     ],
-    external: ["react", "react-dom"],
+    external: ["react", "react-dom", "vite-plugin-posthog"],
   },
-  // Add configurations for other frameworks as needed
 ]);
 
 export default config;
