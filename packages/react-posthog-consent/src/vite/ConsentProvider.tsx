@@ -1,4 +1,9 @@
-import React, { ReactNode, PropsWithChildren, createContext } from "react";
+import React, {
+  ReactNode,
+  PropsWithChildren,
+  createContext,
+  useEffect,
+} from "react";
 import { ConsentConfig } from "./types";
 import { usePostHogConsent } from "./usePostHogConsent";
 
@@ -27,6 +32,11 @@ export const ConsentProvider = ({
   config,
 }: PropsWithChildren<ConsentProviderProps>) => {
   const consentReturn = usePostHogConsent(config);
+
+  useEffect(() => {
+    const payload = consentReturn.getConsentCookie();
+    console.log(payload);
+  }, []);
 
   return (
     <ConsentContext.Provider value={consentReturn}>

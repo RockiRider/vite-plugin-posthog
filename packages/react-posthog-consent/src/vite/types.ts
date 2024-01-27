@@ -7,3 +7,8 @@ export type ConsentConfig = {
   cookie_expiration?: number;
   secure_cookie?: boolean;
 };
+
+export type CookiePayload = {
+  status: boolean;
+  timestamp: number;
+};

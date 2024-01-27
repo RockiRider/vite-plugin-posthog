@@ -1,14 +1,10 @@
 import Cookies from "universal-cookie";
 import { useVitePostHog } from "vite-plugin-posthog/react";
-import { ConsentConfig } from "./types";
+import { ConsentConfig, CookiePayload } from "./types";
+import { getCookiePrefix } from "./utils/getCookiePrefix";
 
 const addDays = (days: number) => {
   return new Date(Date.now() + days * 24 * 60 * 60 * 1000);
-};
-
-const getCookiePrefix = (str: string | undefined) => {
-  if (!str) return "app_consent";
-  return str;
 };
 
 export const usePostHogConsent = (config: ConsentConfig) => {
@@ -51,6 +47,14 @@ export const usePostHogConsent = (config: ConsentConfig) => {
     );
   };
 
+  const getConsentCookie = () => {
+    const cookies = configureCookies();
+
+    return cookies.get(`${getCookiePrefix(config.cookiePrefix)}_consent`) as
+      | CookiePayload
+      | undefined;
+  };
+
   const reset = () => {
     posthog?.reset();
     if (hasConsent()) {
@@ -62,6 +66,7 @@ export const usePostHogConsent = (config: ConsentConfig) => {
     acceptConsent,
     rejectConsent,
     hasConsent,
+    getConsentCookie,
     reset,
   };
 };
