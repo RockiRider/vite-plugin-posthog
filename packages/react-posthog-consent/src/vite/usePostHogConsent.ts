@@ -32,6 +32,13 @@ export const usePostHogConsent = (config: ConsentConfig) => {
     }
   };
 
+  const triggerOptIn = () => {
+    posthog?.opt_in_capturing();
+    if (config.enable_session_recording) {
+      posthog?.startSessionRecording();
+    }
+  };
+
   const rejectConsent = () => {
     const cookies = configureCookies();
 
@@ -71,5 +78,6 @@ export const usePostHogConsent = (config: ConsentConfig) => {
     hasConsent,
     getConsentCookie,
     reset,
+    triggerOptIn,
   };
 };
