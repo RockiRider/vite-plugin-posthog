@@ -11,9 +11,9 @@ export const usePostHogConsent = (config: ConsentConfig) => {
   const posthog = useVitePostHog();
 
   const configureCookies = () => {
-    const requestedDate = addDays(config?.cookie_expiration || 30);
+    const requestedDate = addDays(config.cookie_expiration || 30);
     const cookies = new Cookies(null, {
-      secure: config?.secure_cookie,
+      secure: config.secure_cookie,
       sameSite: "strict",
       expires: requestedDate,
     });
@@ -27,6 +27,9 @@ export const usePostHogConsent = (config: ConsentConfig) => {
       status: true,
       timestamp: Date.now(),
     });
+    if (config.enable_session_recording) {
+      posthog?.startSessionRecording();
+    }
   };
 
   const rejectConsent = () => {

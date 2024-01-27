@@ -43,7 +43,13 @@ export const ConsentProvider = ({
       {children}
       <div
         id="cookie-consent"
-        style={{ zIndex: 0, position: "absolute", bottom: 0, width: "100%" }}
+        style={{
+          zIndex: 999999,
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+        }}
       >
         {cookieBanner}
       </div>
