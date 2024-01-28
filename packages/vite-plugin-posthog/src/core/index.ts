@@ -5,11 +5,11 @@ import { VitePostHogOptions, PostHogInitConfig } from "./types";
 export { VitePostHogOptions, PostHog } from "./types";
 
 /**
- * TODO: Add description
+ * Vite plugin for Posthog, add this into your vite.config.ts
  * @param options
  * @returns
  */
-export function VitePostHog(options: VitePostHogOptions): Plugin {
+export function vitePostHog(options: VitePostHogOptions): Plugin {
   const { apiKey, hostUrl, isDevModeOn, config } = options;
 
   const postHogConfig: PostHogInitConfig = {

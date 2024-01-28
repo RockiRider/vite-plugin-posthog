@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useVitePostHog } from "./useVitePostHog";
 import { Survey } from "../types";
 
-interface UseGetEnabledSurvey {
+interface UseGetActiveMatchingSurveyProps {
   currentSurvey: Survey | null;
   surveyFound: boolean;
   isLoading: boolean;
@@ -13,13 +13,16 @@ interface UseGetEnabledSurvey {
  * @param surveyId - id of the survey to find
  * @returns
  */
-export const useGetEnabledSurvey = (surveyId: string): UseGetEnabledSurvey => {
+export const useGetActiveMatchingSurvey = (
+  surveyId: string
+): UseGetActiveMatchingSurveyProps => {
   const posthog = useVitePostHog();
-  const [surveyState, setSurveyState] = useState<UseGetEnabledSurvey>({
-    currentSurvey: null,
-    surveyFound: false,
-    isLoading: true,
-  });
+  const [surveyState, setSurveyState] =
+    useState<UseGetActiveMatchingSurveyProps>({
+      currentSurvey: null,
+      surveyFound: false,
+      isLoading: true,
+    });
 
   useEffect(() => {
     posthog?.getActiveMatchingSurveys((surveys) => {
