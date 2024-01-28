@@ -1,14 +1,14 @@
-import { useVitePostHog } from "vite-plugin-posthog/react";
 import { ConsentConfig } from "@core/types";
+import { usePostHog } from "posthog-js/react";
 import { acceptConsent } from "@shared/acceptConsent";
+import { rejectConsent } from "@shared/rejectConsent";
 import { checkHasConsent } from "@shared/checkHasConsent";
 import { getCookie } from "@shared/getCookie";
-import { rejectConsent } from "@shared/rejectConsent";
 import { triggerOptIn } from "@shared/triggerOptIn";
 import { triggerReset } from "@shared/triggerReset";
 
 export const usePostHogConsent = (config: ConsentConfig) => {
-  const posthog = useVitePostHog();
+  const posthog = usePostHog();
 
   const handleAcceptConsent = () => {
     acceptConsent(posthog, config);
