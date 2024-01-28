@@ -15,10 +15,10 @@
       "noEmitOnError": true,
       "baseUrl": ".",
       "paths": {
-        "@core" : ["src/core"],
-        "@vite" : ["src/vite"],
-        "@utils" : ["src/utils"],
-        "@shared" : ["src/shared"],
+        "@core/*" : ["src/core/*"],
+        "@vite/*" : ["src/vite/*"],
+        "@utils/*" : ["src/utils/*"],
+        "@shared/*" : ["src/shared/*"],
       }
     },
     "include": ["src/**/*"],

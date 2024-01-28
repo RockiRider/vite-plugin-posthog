@@ -1,5 +1,5 @@
+import { ConsentContext } from "@vite/ConsentProvider";
 import { useContext } from "react";
-import { ConsentContext } from "./ConsentProvider";
 
 export const useConsent = () => {
   const ctx = useContext(ConsentContext);
