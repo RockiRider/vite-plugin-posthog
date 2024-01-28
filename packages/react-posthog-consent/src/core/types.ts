@@ -17,3 +17,12 @@ export type CookiePayload = {
   status: boolean;
   timestamp: number;
 };
+
+export type ConsentContextType = {
+  handleAcceptConsent: () => void;
+  handleRejectConsent: () => void;
+  hasConsent: () => boolean;
+  handleReset: () => void;
+  getConsentCookie: () => CookiePayload | undefined;
+  handleOptIn(): void;
+};

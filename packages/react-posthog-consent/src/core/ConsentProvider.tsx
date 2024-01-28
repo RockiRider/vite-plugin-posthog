@@ -5,24 +5,15 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { ConsentConfig, CookiePayload } from "@core/types";
+import { ConsentConfig, ConsentContextType } from "@core/types";
 import { usePostHogConsent } from "@core/usePostHogConsent";
 
-type ConsentContextType = {
-  acceptConsent: () => void;
-  rejectConsent: () => void;
-  hasConsent: () => boolean;
-  reset: () => void;
-  triggerOptIn: () => void;
-  getConsentCookie: () => CookiePayload | undefined;
-};
-
 export const ConsentContext = createContext<ConsentContextType>({
-  acceptConsent: () => {},
-  rejectConsent: () => {},
+  handleAcceptConsent: () => {},
+  handleRejectConsent: () => {},
   hasConsent: () => false,
-  reset: () => {},
-  triggerOptIn: () => {},
+  handleReset: () => {},
+  handleOptIn: () => {},
   getConsentCookie: () => undefined,
 });
 
@@ -52,7 +43,7 @@ export const ConsentProvider = ({
         setShowBanner(true);
       } else {
         if (payload.status) {
-          consentReturn.triggerOptIn();
+          consentReturn.handleOptIn();
         }
       }
     }

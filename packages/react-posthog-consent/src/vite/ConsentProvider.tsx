@@ -6,23 +6,14 @@ import React, {
   useState,
 } from "react";
 import { usePostHogConsent } from "@vite/usePostHogConsent";
-import { ConsentConfig, CookiePayload } from "@core/types";
-
-type ConsentContextType = {
-  acceptConsent: () => void;
-  rejectConsent: () => void;
-  hasConsent: () => boolean;
-  reset: () => void;
-  triggerOptIn: () => void;
-  getConsentCookie: () => CookiePayload | undefined;
-};
+import { ConsentConfig, ConsentContextType } from "@core/types";
 
 export const ConsentContext = createContext<ConsentContextType>({
-  acceptConsent: () => {},
-  rejectConsent: () => {},
+  handleAcceptConsent: () => {},
+  handleRejectConsent: () => {},
   hasConsent: () => false,
-  reset: () => {},
-  triggerOptIn: () => {},
+  handleReset: () => {},
+  handleOptIn: () => {},
   getConsentCookie: () => undefined,
 });
 
@@ -52,7 +43,7 @@ export const ConsentProvider = ({
         setShowBanner(true);
       } else {
         if (payload.status) {
-          consentReturn.triggerOptIn();
+          consentReturn.handleOptIn();
         }
       }
     }
