@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useVitePostHog } from "./useVitePostHog";
 
+/**
+ * A hook that returns the active feature flags.
+ * @returns an array of active feature flags
+ */
 export function useActiveFeatureFlags(): string[] | undefined {
   const client = useVitePostHog();
 
