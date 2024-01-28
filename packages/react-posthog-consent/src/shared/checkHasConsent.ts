@@ -1,6 +1,6 @@
-import { ConsentConfig } from "@core/types";
-import { configureCookies } from "@shared/configureCookies";
-import { getCookiePrefix } from "@utils/getCookiePrefix";
+import { ConsentConfig } from "./types";
+import { getCookiePrefix } from "../utils/getCookiePrefix";
+import { configureCookies } from "./configureCookies";
 
 export const checkHasConsent = (config: ConsentConfig) => {
   const cookies = configureCookies(config);

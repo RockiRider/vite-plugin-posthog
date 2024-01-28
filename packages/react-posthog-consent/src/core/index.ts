@@ -1,1 +1,3 @@
-export { PostHog } from "./types";
+export { PostHog } from "../shared/types";
+export * from "./ConsentProvider";
+export * from "./usePostHogConsent";

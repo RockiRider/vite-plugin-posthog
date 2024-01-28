@@ -35,8 +35,8 @@
     ],
     "peerDependencies": {
         "@types/react": ">=16.8.0",
-        "react": ">=16.8.0",
         "posthog-js": ">=1.9.0",
+        "react": ">=16.8.0",
         "vite-plugin-posthog": ">=1.0.0"
     },
     "peerDependenciesMeta": {
@@ -54,12 +54,11 @@
         "@rollup/plugin-commonjs": "^25.0.7",
         "@rollup/plugin-node-resolve": "^15.2.3",
         "@rollup/plugin-typescript": "^11.1.6",
-        "@rollup/pluginutils": "^5.1.0",
-        "vite-plugin-posthog": "latest",
+        "posthog-js": "latest",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "rollup": "^4.9.5",
-        "posthog-js": "latest"
+        "vite-plugin-posthog": "latest"
     },
     "dependencies": {
         "universal-cookie": "^7.0.1"

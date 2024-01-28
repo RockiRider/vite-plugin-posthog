@@ -5,8 +5,8 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { ConsentConfig, ConsentContextType } from "@core/types";
-import { usePostHogConsent } from "@core/usePostHogConsent";
+import { ConsentConfig, ConsentContextType } from "../shared/types";
+import { usePostHogConsent } from "./usePostHogConsent";
 
 export const ConsentContext = createContext<ConsentContextType>({
   handleAcceptConsent: () => {},

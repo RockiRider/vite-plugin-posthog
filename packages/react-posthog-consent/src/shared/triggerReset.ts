@@ -1,4 +1,4 @@
-import { ConsentConfig, PostHog } from "@core/types";
+import { ConsentConfig, PostHog } from "./types";
 import { checkHasConsent } from "./checkHasConsent";
 
 export const triggerReset = (

@@ -1,26 +1,19 @@
 {
-    "compilerOptions": {
-      "jsx": "react",
-      "module": "ESNext",
-      "target": "esnext",
-      "moduleResolution": "Bundler",
-      "strict": true,
-      "declaration": true,
-      "noUnusedLocals": true,
-      "resolveJsonModule": true,
-      "esModuleInterop": true,
-      "noImplicitAny": true,
-      "lib": ["dom", "esnext"],
-      "types": ["vite/client", "node"],
-      "noEmitOnError": true,
-      "baseUrl": ".",
-      "paths": {
-        "@core/*" : ["src/core/*"],
-        "@vite/*" : ["src/vite/*"],
-        "@utils/*" : ["src/utils/*"],
-        "@shared/*" : ["src/shared/*"],
-      }
-    },
-    "include": ["src/**/*"],
-    "exclude": ["**/dist", "**/node_modules"]
-  }
+  "compilerOptions": {
+    "jsx": "react",
+    "module": "ESNext",
+    "target": "esnext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "declaration": true,
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "lib": ["dom", "esnext"],
+    "types": ["vite/client", "node"],
+    "noEmitOnError": true,
+  },
+  "include": ["src/**/*"],
+  "exclude": ["**/dist", "**/node_modules"]
+}

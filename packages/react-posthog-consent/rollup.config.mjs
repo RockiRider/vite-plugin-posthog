@@ -1,7 +1,7 @@
 import { defineConfig } from "rollup";
 import typescript from "@rollup/plugin-typescript";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
+import cjs from "@rollup/plugin-commonjs";
 
 const config = defineConfig([
   {
@@ -13,8 +13,10 @@ const config = defineConfig([
     plugins: [
       typescript({
         outDir: "dist/core",
-        include: ["src/core/**/*"],
+        include: ["src/core/**/*", "src/shared/**/*", "src/utils/**/*"],
       }),
+      nodeResolve(),
+      cjs(),
     ],
     external: ["react", "react-dom", "posthog-js", "vite-plugin-posthog"],
   },
@@ -25,8 +27,11 @@ const config = defineConfig([
       format: "es",
     },
     plugins: [
-      typescript({ outDir: "dist/vite", include: ["src/vite/**/*"] }),
-      commonjs(),
+      typescript({
+        outDir: "dist/vite",
+        include: ["src/vite/**/*", "src/shared/**/*", "src/utils/**/*"],
+      }),
+      cjs(),
       nodeResolve(),
     ],
     external: ["react", "react-dom", "vite-plugin-posthog"],
