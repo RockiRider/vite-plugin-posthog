@@ -16,7 +16,7 @@ const config = defineConfig([
         include: ["src/core/**/*"],
       }),
     ],
-    external: ["react", "react-dom", "posthog-js"],
+    external: ["react", "react-dom", "posthog-js", "vite-plugin-posthog"],
   },
   {
     input: "src/vite/index.ts",
