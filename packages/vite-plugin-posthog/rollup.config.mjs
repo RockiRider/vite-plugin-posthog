@@ -15,6 +15,7 @@ const config = defineConfig([
         outDir: "dist/core",
         include: ["src/core/**/*"],
       }),
+      nodeResolve(),
     ],
   },
   {
