@@ -1,80 +1,39 @@
-import Cookies from "universal-cookie";
-import { getCookiePrefix } from "@utils/getCookiePrefix";
-import { ConsentConfig, CookiePayload } from "@core/types";
-import { addDays } from "@utils/addDays";
+import { ConsentConfig } from "@core/types";
 import { usePostHog } from "posthog-js/react";
+import { acceptConsent } from "@shared/acceptConsent";
+import { rejectConsent } from "@shared/rejectConsent";
+import { checkHasConsent } from "@shared/checkHasConsent";
+import { getCookie } from "@shared/getCookie";
+import { triggerOptIn } from "@shared/triggerOptIn";
+import { triggerReset } from "@shared/triggerReset";
 
 export const usePostHogConsent = (config: ConsentConfig) => {
   const posthog = usePostHog();
 
-  const configureCookies = () => {
-    const requestedDate = addDays(config.cookie_expiration || 30);
-    const cookies = new Cookies(null, {
-      secure: config.secure_cookie,
-      sameSite: "strict",
-      expires: requestedDate,
-    });
-    return cookies;
+  const handleAcceptConsent = () => {
+    acceptConsent(posthog, config);
   };
 
-  const acceptConsent = () => {
-    posthog?.opt_in_capturing();
-    const cookies = configureCookies();
-    cookies.set(`${getCookiePrefix(config.cookiePrefix)}_consent`, {
-      status: true,
-      timestamp: Date.now(),
-    });
-    if (config.enable_session_recording) {
-      posthog?.startSessionRecording();
-    }
+  const handleRejectConsent = () => {
+    rejectConsent(config);
   };
 
-  const triggerOptIn = () => {
-    posthog?.opt_in_capturing();
-    if (config.enable_session_recording) {
-      posthog?.startSessionRecording();
-    }
-  };
+  const handleOptIn = () => triggerOptIn(posthog, config);
 
-  const rejectConsent = () => {
-    const cookies = configureCookies();
+  const hasConsent = () => checkHasConsent(config);
 
-    cookies.set(`${getCookiePrefix(config.cookiePrefix)}_consent`, {
-      status: true,
-      timestamp: Date.now(),
-    });
-  };
+  const getConsentCookie = () => getCookie(config);
 
-  const hasConsent = () => {
-    const cookies = configureCookies();
-
-    return (
-      cookies.get(`${getCookiePrefix(config.cookiePrefix)}_consent`)?.status ===
-        true || false
-    );
-  };
-
-  const getConsentCookie = () => {
-    const cookies = configureCookies();
-
-    return cookies.get(`${getCookiePrefix(config.cookiePrefix)}_consent`) as
-      | CookiePayload
-      | undefined;
-  };
-
-  const reset = () => {
-    posthog?.reset();
-    if (hasConsent()) {
-      posthog?.opt_in_capturing();
-    }
+  const handleReset = () => {
+    triggerReset(posthog, config);
   };
 
   return {
-    acceptConsent,
-    rejectConsent,
+    handleAcceptConsent,
+    handleRejectConsent,
     hasConsent,
     getConsentCookie,
-    reset,
-    triggerOptIn,
+    handleReset,
+    handleOptIn,
   };
 };
