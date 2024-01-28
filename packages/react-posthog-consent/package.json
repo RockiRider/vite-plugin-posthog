@@ -1,6 +1,6 @@
 {
     "name": "react-posthog-consent",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "license": "MIT",
     "type": "module",
     "keywords": [
@@ -60,7 +60,6 @@
         "react-dom": "^18.2.0",
         "rollup": "^4.9.5",
         "posthog-js": "latest"
-
     },
     "dependencies": {
         "universal-cookie": "^7.0.1"
