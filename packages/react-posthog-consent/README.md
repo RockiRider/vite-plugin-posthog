@@ -2,7 +2,10 @@
 
 A Package that gives you easy access to better consent management for PostHog. If you want to ensure you are only tracking users who have given consent, this package is for you.
 
-Supports both `posthog-js/react` (official SDK) and `vite-plugin-posthog` (Non-official SDK for Vite).
+Supports:
+
+- `vite-plugin-posthog`
+- `posthog-js/react` (Coming soon)
 
 ## Vite + React Installation
 
