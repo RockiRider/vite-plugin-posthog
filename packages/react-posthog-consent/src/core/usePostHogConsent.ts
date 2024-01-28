@@ -1,11 +1,11 @@
 import Cookies from "universal-cookie";
-import { useVitePostHog } from "vite-plugin-posthog/react";
 import { getCookiePrefix } from "../utils/getCookiePrefix";
 import { ConsentConfig, CookiePayload } from "../core/types";
 import { addDays } from "../utils/addDays";
+import { usePostHog } from "posthog-js/react";
 
 export const usePostHogConsent = (config: ConsentConfig) => {
-  const posthog = useVitePostHog();
+  const posthog = usePostHog();
 
   const configureCookies = () => {
     const requestedDate = addDays(config.cookie_expiration || 30);

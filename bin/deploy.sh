@@ -64,6 +64,7 @@ commit_and_push() {
   VERSION="$(get_new_version)"
   BRANCH_NAME="release/$PACKAGE_NAME-v$VERSION"
   git checkout -b "$BRANCH_NAME"
+  npm install
   git add .
   git commit -m"$PACKAGE_NAME-$VERSION"
   git push --set-upstream origin "$BRANCH_NAME"

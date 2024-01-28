@@ -5,8 +5,8 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { ConsentConfig, CookiePayload } from "./types";
 import { usePostHogConsent } from "./usePostHogConsent";
+import { ConsentConfig, CookiePayload } from "../core/types";
 
 type ConsentContextType = {
   acceptConsent: () => void;
