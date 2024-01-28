@@ -7,10 +7,10 @@
     "example:build": "turbo build --filter=example-react",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "vpp:build": "turbo build --filter=vite-plugin-posthog",
+    "vpp:build": "turbo build --filter=vite-plugin-posthog --force",
     "vpp:deploy": "bash ./bin/deploy.sh vite-plugin-posthog",
-    "rpc:build": "turbo build --filter=react-posthog-consent",
-    "rpc:deploy": "./bin/deploy.sh react-posthog-consent"
+    "rpc:build": "turbo build --filter=react-posthog-consent --force",
+    "rpc:deploy": "bash ./bin/deploy.sh react-posthog-consent"
     
   },
   "devDependencies": {

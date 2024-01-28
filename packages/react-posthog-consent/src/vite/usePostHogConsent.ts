@@ -1,23 +1,19 @@
 import Cookies from "universal-cookie";
 import { useVitePostHog } from "vite-plugin-posthog/react";
-import { ConsentConfig } from "./types";
+import { ConsentConfig, CookiePayload } from "./types";
+import { getCookiePrefix } from "./utils/getCookiePrefix";
 
 const addDays = (days: number) => {
   return new Date(Date.now() + days * 24 * 60 * 60 * 1000);
-};
-
-const getCookiePrefix = (str: string | undefined) => {
-  if (!str) return "app_consent";
-  return str;
 };
 
 export const usePostHogConsent = (config: ConsentConfig) => {
   const posthog = useVitePostHog();
 
   const configureCookies = () => {
-    const requestedDate = addDays(config?.cookie_expiration || 30);
+    const requestedDate = addDays(config.cookie_expiration || 30);
     const cookies = new Cookies(null, {
-      secure: config?.secure_cookie,
+      secure: config.secure_cookie,
       sameSite: "strict",
       expires: requestedDate,
     });
@@ -31,6 +27,16 @@ export const usePostHogConsent = (config: ConsentConfig) => {
       status: true,
       timestamp: Date.now(),
     });
+    if (config.enable_session_recording) {
+      posthog?.startSessionRecording();
+    }
+  };
+
+  const triggerOptIn = () => {
+    posthog?.opt_in_capturing();
+    if (config.enable_session_recording) {
+      posthog?.startSessionRecording();
+    }
   };
 
   const rejectConsent = () => {
@@ -51,6 +57,14 @@ export const usePostHogConsent = (config: ConsentConfig) => {
     );
   };
 
+  const getConsentCookie = () => {
+    const cookies = configureCookies();
+
+    return cookies.get(`${getCookiePrefix(config.cookiePrefix)}_consent`) as
+      | CookiePayload
+      | undefined;
+  };
+
   const reset = () => {
     posthog?.reset();
     if (hasConsent()) {
@@ -62,6 +76,8 @@ export const usePostHogConsent = (config: ConsentConfig) => {
     acceptConsent,
     rejectConsent,
     hasConsent,
+    getConsentCookie,
     reset,
+    triggerOptIn,
   };
 };
