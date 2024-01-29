@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useVitePostHog } from "./useVitePostHog";
 
 /**
- * A hook that returns the active feature flags.
+ * A hook that returns an array of active feature flags.
  * @returns an array of active feature flags
  */
 export function useActiveFeatureFlags(): string[] | undefined {
