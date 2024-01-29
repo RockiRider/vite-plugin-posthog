@@ -1,28 +1,29 @@
 import { useEffect, useMemo, useState } from "react";
 import { useVitePostHog } from "./useVitePostHog";
-import { Survey } from "../types";
+import { EventMetaData, Survey } from "../types";
 
-interface UseGetActiveMatchingSurveyProps {
+type SurveyState = {
   currentSurvey: Survey | null;
   surveyFound: boolean;
   isLoading: boolean;
-}
+};
 
 /**
  * Uses getActiveMatchingSurveys to find the survey with the given id.
  * @param surveyId - id of the survey to find
+ * @param eventMetaData - metadata to send with the survey dismissed event
  * @returns
  */
 export const useGetActiveMatchingSurvey = (
-  surveyId: string
-): UseGetActiveMatchingSurveyProps => {
+  surveyId: string,
+  eventMetaData?: EventMetaData
+): SurveyState => {
   const posthog = useVitePostHog();
-  const [surveyState, setSurveyState] =
-    useState<UseGetActiveMatchingSurveyProps>({
-      currentSurvey: null,
-      surveyFound: false,
-      isLoading: true,
-    });
+  const [surveyState, setSurveyState] = useState<SurveyState>({
+    currentSurvey: null,
+    surveyFound: false,
+    isLoading: true,
+  });
 
   useEffect(() => {
     posthog?.getActiveMatchingSurveys((surveys) => {
@@ -54,6 +55,7 @@ export const useGetActiveMatchingSurvey = (
   const handleDismiss = () => {
     posthog?.capture("survey dismissed", {
       $survey_id: surveyId,
+      ...eventMetaData,
     });
   };
 
