@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useVitePostHog } from "./useVitePostHog";
-import { JsonType } from "../types";
+import { JsonType } from "../../types";
 
 /**
  * A hook that returns the payload of a feature flag.

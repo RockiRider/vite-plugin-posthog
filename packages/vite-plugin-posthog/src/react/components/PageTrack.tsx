@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useEffect } from "react";
 import { useVitePostHog } from "../hooks/useVitePostHog";
-import { EventMetaData } from "../types";
+import { EventMetaData } from "../../types";
 
 interface PageTrackProps {
   uniquePageTitle: string;

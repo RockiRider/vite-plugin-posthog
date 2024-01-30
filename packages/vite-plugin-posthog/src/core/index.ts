@@ -1,8 +1,8 @@
 import { HtmlTagDescriptor, Plugin } from "vite";
 import { constructScript } from "./construct";
-import { VitePostHogOptions, PostHogInitConfig } from "./types";
+import { VitePostHogOptions, PostHogInitConfig } from "../types";
 
-export { VitePostHogOptions, PostHog } from "./types";
+export { VitePostHogOptions, PostHog } from "../types";
 
 /**
  * Vite plugin for Posthog, add this into your vite.config.ts

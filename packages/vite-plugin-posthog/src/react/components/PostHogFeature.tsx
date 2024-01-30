@@ -10,7 +10,7 @@ import React, {
   ReactNode,
   HTMLProps,
 } from "react";
-import { PostHog } from "../types";
+import { PostHog } from "../../types";
 
 export type PostHogFeatureProps = HTMLProps<HTMLDivElement> & {
   flag: string;
