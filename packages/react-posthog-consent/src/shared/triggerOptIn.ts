@@ -1,4 +1,4 @@
-import { ConsentConfig, PostHog } from "./types";
+import { ConsentConfig, PostHog } from "../types";
 
 export const triggerOptIn = (
   posthog: PostHog | null,

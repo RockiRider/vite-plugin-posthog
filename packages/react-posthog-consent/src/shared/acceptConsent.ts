@@ -1,4 +1,4 @@
-import { ConsentConfig, PostHog } from "./types";
+import { ConsentConfig, PostHog } from "../types";
 import { getCookiePrefix } from "../utils/getCookiePrefix";
 import { configureCookies } from "./configureCookies";
 

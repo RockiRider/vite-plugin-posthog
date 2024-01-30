@@ -1,5 +1,5 @@
 import Cookies from "universal-cookie";
-import { ConsentConfig } from "./types";
+import { ConsentConfig } from "../types";
 import { addDays } from "../utils/addDays";
 
 export const configureCookies = (config: ConsentConfig) => {
