@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useVitePostHog } from "./useVitePostHog";
-import { EventMetaData, Survey } from "../types";
+import { EventMetaData, Survey } from "../../types";
 
 type SurveyState = {
   currentSurvey: Survey | null;

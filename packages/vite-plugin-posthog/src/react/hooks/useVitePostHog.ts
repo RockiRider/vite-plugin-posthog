@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { PostHog } from "../types";
+import { PostHog } from "../../types";
 
 export const useVitePostHog = (): PostHog | null => {
   return useMemo(() => {

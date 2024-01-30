@@ -1,4 +1,4 @@
-import posthogJs, { PostHogConfig } from "posthog-js";
+import posthogJs, { PostHogConfig, Survey, JsonType } from "posthog-js";
 
 type PostHogConfigOptions = Omit<PostHogConfig, "api_host">;
 export type PostHogInitConfig = Partial<PostHogConfigOptions> & {
@@ -15,3 +15,7 @@ export type VitePostHogOptions = {
 };
 
 export type PostHog = typeof posthogJs;
+export { Survey, JsonType };
+export type EventMetaData = {
+  [x: string]: any;
+};

@@ -1,4 +1,4 @@
-import { ConsentConfig } from "./types";
+import { ConsentConfig } from "../types";
 import { getCookiePrefix } from "../utils/getCookiePrefix";
 import { configureCookies } from "./configureCookies";
 

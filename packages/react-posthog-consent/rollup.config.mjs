@@ -13,7 +13,12 @@ const config = defineConfig([
     plugins: [
       typescript({
         outDir: "dist/core",
-        include: ["src/core/**/*", "src/shared/**/*", "src/utils/**/*"],
+        include: [
+          "src/core/**/*",
+          "src/shared/**/*",
+          "src/utils/**/*",
+          "src/types.ts",
+        ],
       }),
       nodeResolve(),
       cjs(),
@@ -29,7 +34,12 @@ const config = defineConfig([
     plugins: [
       typescript({
         outDir: "dist/vite",
-        include: ["src/vite/**/*", "src/shared/**/*", "src/utils/**/*"],
+        include: [
+          "src/vite/**/*",
+          "src/shared/**/*",
+          "src/utils/**/*",
+          "src/types.ts",
+        ],
       }),
       cjs(),
       nodeResolve(),
