@@ -26,8 +26,8 @@
             "import": "./dist/vite/index.js"
         }
     },
-    "types": "src/core/types.d.ts",
-    "typings": "src/core/types.d.ts",
+    "types": "src/core/index.d.ts",
+    "typings": "src/core/index.d.ts",
     "files": [
         "dist",
         "package.json",

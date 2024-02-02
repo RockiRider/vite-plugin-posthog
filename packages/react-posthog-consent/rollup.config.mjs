@@ -5,47 +5,52 @@ import cjs from "@rollup/plugin-commonjs";
 
 const config = defineConfig([
   {
-    input: "src/core/index.ts",
+    input: {
+      "core/index": "src/core/index.ts",
+      "vite/index": "src/vite/index.ts",
+    },
     output: {
-      dir: "dist/core",
+      dir: "dist",
       format: "es",
     },
     plugins: [
       typescript({
-        outDir: "dist/core",
-        include: [
-          "src/core/**/*",
-          "src/shared/**/*",
-          "src/utils/**/*",
-          "src/types.ts",
-        ],
+        outDir: "dist",
+        include: ["src/**/*"],
+        declaration: true,
       }),
       nodeResolve(),
       cjs(),
     ],
-    external: ["react", "react-dom", "posthog-js", "vite-plugin-posthog"],
-  },
-  {
-    input: "src/vite/index.ts",
-    output: {
-      dir: "dist/vite",
-      format: "es",
-    },
-    plugins: [
-      typescript({
-        outDir: "dist/vite",
-        include: [
-          "src/vite/**/*",
-          "src/shared/**/*",
-          "src/utils/**/*",
-          "src/types.ts",
-        ],
-      }),
-      cjs(),
-      nodeResolve(),
+    external: [
+      "react",
+      "react-dom",
+      "posthog-js",
+      "vite-plugin-posthog",
+      "react/jsx-runtime",
     ],
-    external: ["react", "react-dom", "vite-plugin-posthog"],
   },
+  // {
+  //   input: "src/vite/index.ts",
+  //   output: {
+  //     dir: "dist/vite",
+  //     format: "es",
+  //   },
+  //   plugins: [
+  //     typescript({
+  //       outDir: "dist/vite",
+  //       include: [
+  //         "src/vite/**/*",
+  //         "src/shared/**/*",
+  //         "src/utils/**/*",
+  //         "src/types.ts",
+  //       ],
+  //     }),
+  //     cjs(),
+  //     nodeResolve(),
+  //   ],
+  //   external: ["react", "react-dom", "vite-plugin-posthog"],
+  // },
 ]);
 
 export default config;

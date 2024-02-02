@@ -1,5 +1,5 @@
-import { ConsentConfig, CookiePayload } from "../types";
-import { getCookiePrefix } from "../utils/getCookiePrefix";
+import { ConsentConfig, CookiePayload } from "./types";
+import { getCookiePrefix } from "./utils/getCookiePrefix";
 import { configureCookies } from "./configureCookies";
 
 export const getCookie = (config: ConsentConfig) => {

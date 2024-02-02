@@ -1,6 +1,6 @@
 import Cookies from "universal-cookie";
-import { ConsentConfig } from "../types";
-import { addDays } from "../utils/addDays";
+import { ConsentConfig } from "./types";
+import { addDays } from "./utils/addDays";
 
 export const configureCookies = (config: ConsentConfig) => {
   const requestedDate = addDays(config.cookie_expiration || 30);

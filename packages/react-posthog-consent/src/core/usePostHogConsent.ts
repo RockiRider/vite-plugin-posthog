@@ -5,7 +5,7 @@ import { getCookie } from "../shared/getCookie";
 import { rejectConsent } from "../shared/rejectConsent";
 import { triggerOptIn } from "../shared/triggerOptIn";
 import { triggerReset } from "../shared/triggerReset";
-import { ConsentConfig } from "../types";
+import { ConsentConfig } from "../shared/types";
 
 export const usePostHogConsent = (config: ConsentConfig) => {
   const posthog = usePostHog();

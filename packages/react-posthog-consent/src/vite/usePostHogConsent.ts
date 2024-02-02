@@ -1,5 +1,5 @@
 import { useVitePostHog } from "vite-plugin-posthog/react";
-import { ConsentConfig } from "../types";
+import { ConsentConfig } from "../shared/types";
 import { acceptConsent } from "../shared/acceptConsent";
 import { checkHasConsent } from "../shared/checkHasConsent";
 import { getCookie } from "../shared/getCookie";
