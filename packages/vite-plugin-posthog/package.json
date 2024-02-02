@@ -18,8 +18,8 @@
     "scripts": {
         "build": "rollup -c"
     },
-    "types": "dist/core/types.d.ts",
-    "typings": "dist/core/types.d.ts",
+    "types": "dist/core/index.d.ts",
+    "typings": "dist/core/index.d.ts",
     "exports": {
         ".": {
             "import": "./dist/core/index.js"
