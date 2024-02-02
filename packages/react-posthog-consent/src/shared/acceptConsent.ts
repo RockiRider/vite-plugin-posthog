@@ -1,5 +1,5 @@
-import { ConsentConfig, PostHog } from "../types";
-import { getCookiePrefix } from "../utils/getCookiePrefix";
+import { ConsentConfig, PostHog } from "./types";
+import { getCookiePrefix } from "./utils/getCookiePrefix";
 import { configureCookies } from "./configureCookies";
 
 export const acceptConsent = (

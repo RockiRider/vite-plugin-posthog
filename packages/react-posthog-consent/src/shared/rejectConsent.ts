@@ -1,5 +1,5 @@
-import { ConsentConfig } from "../types";
-import { getCookiePrefix } from "../utils/getCookiePrefix";
+import { ConsentConfig } from "./types";
+import { getCookiePrefix } from "./utils/getCookiePrefix";
 import { configureCookies } from "./configureCookies";
 
 export const rejectConsent = (config: ConsentConfig) => {

@@ -1,11 +1,11 @@
-import React, {
+import {
   ReactNode,
   PropsWithChildren,
   createContext,
   useEffect,
   useState,
 } from "react";
-import { ConsentConfig, ConsentContextType } from "../types";
+import { ConsentConfig, ConsentContextType } from "../shared/types";
 import { usePostHogConsent } from "./usePostHogConsent";
 
 export const ConsentContext = createContext<ConsentContextType>({
