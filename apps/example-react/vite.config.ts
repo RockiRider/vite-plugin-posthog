@@ -1,6 +1,6 @@
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
-import { VitePostHog } from "vite-plugin-posthog";
+import { vitePostHog } from "vite-plugin-posthog";
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
@@ -11,7 +11,7 @@ export default ({ mode }) => {
   return defineConfig({
     plugins: [
       react(),
-      VitePostHog({
+      vitePostHog({
         apiKey: process.env.VITE_POSTHOG_KEY,
         hostUrl: "https://eu.posthog.com",
         isDevModeOn: true,

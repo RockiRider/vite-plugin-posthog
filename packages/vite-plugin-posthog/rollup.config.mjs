@@ -13,7 +13,7 @@ const config = defineConfig([
     plugins: [
       typescript({
         outDir: "dist/core",
-        include: ["src/core/**/*", "src/types.ts"],
+        include: ["src/core/**/*"],
       }),
       nodeResolve(),
     ],
@@ -27,7 +27,7 @@ const config = defineConfig([
     plugins: [
       typescript({
         outDir: "dist/react",
-        include: ["src/react/**/*", "src/types.ts"],
+        include: ["src/react/**/*"],
       }),
       nodeResolve(),
     ],
