@@ -6,13 +6,11 @@ import {
   useVitePostHog,
   useFeatureFlagEnabled,
 } from "vite-plugin-posthog/react";
-import { useConsent } from "react-posthog-consent/vite";
 
 function App() {
   const [count, setCount] = useState(0);
   const posthog = useVitePostHog();
   const showWelcomeMessage = useFeatureFlagEnabled("welcome-msg");
-  const { handleReset } = useConsent();
 
   const handleClick = () => {
     posthog?.capture("count incremented");
@@ -40,7 +38,6 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <button onClick={handleReset}>Custom Reset</button>
       <button onClick={() => posthog?.reset()}>Reset</button>
     </>
   );

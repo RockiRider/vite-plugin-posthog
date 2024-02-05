@@ -24,7 +24,6 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
-    "vite-plugin-posthog": "2.0.4",
-    "react-posthog-consent": "*"
+    "vite-plugin-posthog": "*"
   }
 }
