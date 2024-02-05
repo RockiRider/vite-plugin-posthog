@@ -2,7 +2,7 @@
     "name": "vite-plugin-posthog",
     "version": "2.0.4",
     "type": "module",
-    "homepage": "https://github.com/RockiRider/posthog/tree/main/packages/vite-plugin-posthog",
+    "homepage": "https://github.com/RockiRider/vite-plugin-posthog/tree/main/packages/vite-plugin-posthog",
     "keywords": [
         "vite",
         "posthog",
@@ -11,7 +11,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/RockiRider/posthog.git",
+        "url": "git+https://github.com/RockiRider/vite-plugin-posthog.git",
         "directory": "packages/vite-plugin-posthog"
     },
     "license": "MIT",
