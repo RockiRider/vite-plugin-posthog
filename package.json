@@ -2,6 +2,7 @@
   "name": "vite-plugin-posthog",
   "private": true,
   "scripts": {
+    "fbuild": "turbo build --filter=vite-plugin-posthog --filter=react-posthog-consent --force",
     "build": "turbo build --filter=vite-plugin-posthog --filter=react-posthog-consent",
     "dev": "turbo dev --filter=example-react",
     "example:build": "turbo build --filter=example-react",
