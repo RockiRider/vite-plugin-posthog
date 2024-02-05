@@ -1,6 +1,4 @@
-# PostHog Packages
-
-## vite-plugin-posthog
+# vite-plugin-posthog
 
 A Package that adds PostHog to your Vite project. Compatible with Vue, Svelte and React.
 
