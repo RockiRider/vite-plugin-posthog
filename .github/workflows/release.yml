@@ -14,6 +14,11 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
+      - name: Create env file
+        run: |
+          cd apps/example-react
+          touch .env
+          echo VITE_POSTHOG_KEY=${{secrets.VITE_POSTHOG_KEY}} > .env
       - run: npm run build
       - uses: JS-DevTools/npm-publish@v3
         id: publish
