@@ -8,6 +8,9 @@
     "build": "turbo build --filter=vite-plugin-posthog",
     "fbuild": "turbo build --filter=vite-plugin-posthog --force",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "preview": "turbo preview --filter=example-react",
+    "fpreview": "turbo preview --filter=example-react --force",
+    "test": "npx playwright test",
     "deploy": "bash ./bin/deploy.sh vite-plugin-posthog"
     
   },

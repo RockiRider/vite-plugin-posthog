@@ -12,6 +12,15 @@
       "cache": false,
       "persistent": true,
       "dependsOn": ["vite-plugin-posthog#build"]
+    },
+    "preview": {
+      "dependsOn": ["^build"]
+    },
+    "example-react#build": {
+      "dependsOn": ["vite-plugin-posthog#build"]
+    },
+    "example-react#preview": {
+      "dependsOn": ["example-react#build"]
     }
   }
 }

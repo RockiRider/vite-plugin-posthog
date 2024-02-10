@@ -30,7 +30,9 @@ function App() {
       <h1>Vite + React</h1>
       {showWelcomeMessage && <h2>Welcome to Vite + React!</h2>}
       <div className="card">
-        <button onClick={handleClick}>count is {count}</button>
+        <button onClick={handleClick} data-testid={"main_count_btn"}>
+          count is {count}
+        </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>

@@ -18,9 +18,11 @@ export default ({ mode }) => {
         config: {
           autocapture: false,
           disable_session_recording: true,
-          opt_out_capturing_by_default: true,
         },
       }),
     ],
+    preview: {
+      port: 4001,
+    },
   });
 };
