@@ -11,6 +11,7 @@
     "preview": "turbo preview --filter=example-react",
     "fpreview": "turbo preview --filter=example-react --force",
     "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
     "deploy": "bash ./bin/deploy.sh vite-plugin-posthog"
   },
   "devDependencies": {

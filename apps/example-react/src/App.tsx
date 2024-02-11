@@ -12,14 +12,9 @@ function App() {
   const posthog = useVitePostHog();
   const showWelcomeMessage = useFeatureFlagEnabled("welcome-msg");
 
-  const handleClick = () => {
+  const handleClickBeacon = () => {
     posthog?.capture("count incremented");
     setCount((count) => count + 1);
-  };
-
-  const handleIdentifyTestUser = () => {
-    posthog?.identify("Test User");
-    posthog?.group("organization", "Test Org");
   };
 
   return (
@@ -35,7 +30,7 @@ function App() {
       <h1>Vite + React</h1>
       {showWelcomeMessage && <h2>Welcome to Vite + React!</h2>}
       <div className="card">
-        <button onClick={handleClick} data-testid={"main_count_btn"}>
+        <button onClick={handleClickBeacon} data-testid={"main_count_btn"}>
           count is {count}
         </button>
         <p>
@@ -46,9 +41,6 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <button onClick={() => posthog?.reset()}>Reset</button>
-      <button data-testid="btn_identify_test" onClick={handleIdentifyTestUser}>
-        Identify Test
-      </button>
     </>
   );
 }

@@ -2,15 +2,16 @@ import { test, expect } from "@playwright/test";
 import * as querystring from "querystring";
 
 const POSTHOG_URL = "https://eu.posthog.com";
-const DECIDE_ENDPOINT = "/decide/*";
+const DECIDE_ENDPOINT = "/decide/";
+const EVENT_ENDPOINT = "/e/";
 
-test.skip("has title", async ({ page }) => {
+test("has title", async ({ page }) => {
   await page.goto("/");
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle("Vite + React");
 });
 
-test.skip("Check button text and click", async ({ page }) => {
+test("Check button text and click", async ({ page }) => {
   // Get the button
   await page.goto("/");
   const button = page.getByTestId("main_count_btn");
@@ -27,110 +28,54 @@ test.skip("Check button text and click", async ({ page }) => {
   expect(buttonText).toBe("count is 1");
 });
 
-test("posthog.identify is called", async ({ page }) => {
-  let isPosthogIdentifyCalled = false;
-  let analyticsEndpoint = "";
+test("posthog initialization", async ({ page }) => {
+  let isPostHogInit = false;
 
-  await page.route(`${POSTHOG_URL}${DECIDE_ENDPOINT}`, async (route) => {
+  await page.route(`**/*`, async (route, request) => {
     // Continue the request and get the response
     route.continue();
 
-    // Wait for the response
-    const response = await page.waitForResponse(
-      `${POSTHOG_URL}${DECIDE_ENDPOINT}`
-    );
-
-    // Get the analytics endpoint from the response payload
-    const payload = await response.json();
-    analyticsEndpoint = payload["analytics"].endpoint; // replace '...' with the actual path to the analytics endpoint in the payload
-  });
-
-  // Intercept network requests to the obtained analytics endpoint
-  await page.route("**/*", (route, request) => {
-    // Check if the request is a POST to the analytics endpoint
     if (
-      request.method() === "POST" &&
-      request.url().includes(`${POSTHOG_URL}${analyticsEndpoint}`)
+      route.request().method() === "POST" &&
+      route.request().url().includes(`${POSTHOG_URL}${DECIDE_ENDPOINT}`)
     ) {
-      isPosthogIdentifyCalled = true;
-
-      const data = request.postData() || "";
-
-      const decodedQuery = querystring.parse(data);
-      const base64DecodedData = Buffer.from(
-        decodedQuery.data as string,
-        "base64"
-      ).toString("utf8");
-      const jsonData = JSON.parse(base64DecodedData);
-      console.log(JSON.stringify(jsonData, null, 2));
-
-      // // Decompress the payload
-      // console.log("Decompressed payload: ", decompressed);
+      isPostHogInit = true;
     }
-    route.continue();
   });
-
-  // Perform the actions that should trigger the posthog.identify call
   await page.goto("/");
-  const button = page.getByTestId("btn_identify_test");
-  await button.click();
 
-  // Assert that posthog.identify was called
-  expect(isPosthogIdentifyCalled).toBe(true);
+  const reg = new RegExp(`${POSTHOG_URL}${DECIDE_ENDPOINT}*`);
+  const res = await page.waitForResponse(reg);
+  const data = await res.json();
+
+  expect(data.featureFlags).toEqual({ "welcome-msg": true });
+  expect(isPostHogInit).toBe(true);
 });
 
-test.skip("posthog.capture is called", async ({ page }) => {
-  let isPosthogCaptureCalled = false;
-  let analyticsEndpoint = "";
+test("posthog page view", async ({ page }) => {
+  let isPostHogEventCalled = false;
 
-  await page.route(`${POSTHOG_URL}${DECIDE_ENDPOINT}`, async (route) => {
+  await page.route(`**/*`, async (route, request) => {
     // Continue the request and get the response
     route.continue();
 
-    // Wait for the response
-    const response = await page.waitForResponse(
-      `${POSTHOG_URL}${DECIDE_ENDPOINT}`
-    );
-
-    // Get the analytics endpoint from the response payload
-    const payload = await response.json();
-    analyticsEndpoint = payload["analytics"].endpoint; // replace '...' with the actual path to the analytics endpoint in the payload
-  });
-
-  // Intercept network requests to the obtained analytics endpoint
-  await page.route("**/*", (route, request) => {
-    // Check if the request is a POST to the analytics endpoint
     if (
-      request.method() === "POST" &&
-      request.url().includes(`${POSTHOG_URL}${analyticsEndpoint}`)
+      route.request().method() === "POST" &&
+      route.request().url().includes(`${POSTHOG_URL}${EVENT_ENDPOINT}`)
     ) {
-      isPosthogCaptureCalled = true;
-
-      const data = request.postData() || "";
-      console.log(data);
-
-      const decodedQuery = querystring.parse(data);
-      console.log(decodedQuery);
-      const base64DecodedData = Buffer.from(
-        decodedQuery.data as string,
-        "base64"
-      ).toString("utf8");
-      const jsonData = JSON.parse(base64DecodedData);
-      console.log(JSON.stringify(jsonData, null, 2));
-
-      // // Decompress the payload
-      // console.log("Decompressed payload: ", decompressed);
+      isPostHogEventCalled = true;
     }
-    route.continue();
   });
 
   // Perform the actions that should trigger the posthog.capture call
   await page.goto("/");
-  const button = page.getByTestId("main_count_btn");
-  await button.click();
+
+  const reg2 = new RegExp(`${POSTHOG_URL}${EVENT_ENDPOINT}*`);
+
+  const res = await page.waitForResponse(reg2);
+  const data = await res.json();
 
   // Assert that posthog.capture was called
-  expect(isPosthogCaptureCalled).toBe(true);
-  const buttonText = await button.innerText();
-  expect(buttonText).toBe("count is 1");
+  expect(data.status).toBe(1);
+  expect(isPostHogEventCalled).toBe(true);
 });
