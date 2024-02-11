@@ -8,6 +8,9 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
+    "test": {
+      "outputMode": "full"
+    },
     "dev": {
       "cache": false,
       "persistent": true,

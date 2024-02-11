@@ -17,6 +17,11 @@ function App() {
     setCount((count) => count + 1);
   };
 
+  const handleIdentifyTestUser = () => {
+    posthog?.identify("Test User");
+    posthog?.group("organization", "Test Org");
+  };
+
   return (
     <>
       <div>
@@ -41,6 +46,9 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <button onClick={() => posthog?.reset()}>Reset</button>
+      <button data-testid="btn_identify_test" onClick={handleIdentifyTestUser}>
+        Identify Test
+      </button>
     </>
   );
 }

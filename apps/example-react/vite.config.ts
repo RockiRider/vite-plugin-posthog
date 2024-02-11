@@ -18,6 +18,8 @@ export default ({ mode }) => {
         config: {
           autocapture: false,
           disable_session_recording: true,
+          capture_pageleave: false,
+          capture_pageview: false,
         },
       }),
     ],
