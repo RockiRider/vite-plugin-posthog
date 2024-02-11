@@ -8,7 +8,8 @@ Helps you integrate with PostHog specifically designed with Vite in mind. Curren
 
 ## Advantages over official Posthog React SDK
 
-- No need to wrap your app in a `<PosthogProvider />` component
+- Posthog will be initialised faster, as you don't need to wait for a `<PosthogProvider />` component to be mounted
+- No need to wrap your app in an additional `context` component via `<PosthogProvider />`
 - Easy to get started with, just add it to your `vite.config.js` file
 - Easily turn off tracking in development mode
 - Additional Hooks and Components to get you up and running quickly
