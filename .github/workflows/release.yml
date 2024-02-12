@@ -25,8 +25,10 @@ jobs:
         run: | 
           cd apps/example-react
           touch .env
-          echo VITE_POSTHOG_KEY=${{secrets.VITE_POSTHOG_KEY}} > .env
-          echo VITE_CHECK_FOR_DEV=false > .env
+          echo VITE_POSTHOG_KEY=${{secrets.VITE_POSTHOG_KEY}} >> .env
+          echo VITE_CHECK_FOR_DEV=false >> .env
+          echo VITE_APP_TITLE=Example >> .env
+          cd ../..
       - name: "Build Vite App"
         run: npm run example:build
       - name: Install Playwright Browsers
