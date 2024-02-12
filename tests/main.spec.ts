@@ -47,6 +47,7 @@ test("posthog initialization", async ({ page }) => {
   const reg = new RegExp(`${POSTHOG_URL}${DECIDE_ENDPOINT}*`);
   const res = await page.waitForResponse(reg);
   const data = await res.json();
+  console.log("Data is here", data);
 
   expect(data.analytics).toEqual({
     endpoint: "/i/v0/e/",
