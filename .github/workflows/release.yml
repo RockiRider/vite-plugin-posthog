@@ -25,6 +25,7 @@ jobs:
           cd apps/example-react
           touch .env
           echo VITE_POSTHOG_KEY=${{secrets.VITE_POSTHOG_KEY}} > .env
+          echo VITE_CHECK_FOR_DEV=false > .env
       - name: "Build Vite App"
         run: npm run example:build
       - name: Install Playwright Browsers
@@ -49,6 +50,11 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
+      - name: Download production artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: package-dist
+          path: packages/vite-plugin-posthog/dist
       - uses: JS-DevTools/npm-publish@v3
         id: publish
         with:
