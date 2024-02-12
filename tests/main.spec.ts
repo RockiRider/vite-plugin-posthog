@@ -48,7 +48,9 @@ test("posthog initialization", async ({ page }) => {
   const res = await page.waitForResponse(reg);
   const data = await res.json();
 
-  expect(data.featureFlags).toEqual({ "welcome-msg": true });
+  expect(data.analytics).toEqual({
+    endpoint: "/i/v0/e/",
+  });
   expect(isPostHogInit).toBe(true);
 });
 
