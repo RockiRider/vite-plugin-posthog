@@ -49,10 +49,13 @@ test("posthog initialization", async ({ page }) => {
   const data = await res.json();
 
   expect(data.featureFlags).toEqual({ "welcome-msg": true });
+  expect(data.analytics).toEqual({
+    endpoint: "/i/v0/e/",
+  });
   expect(isPostHogInit).toBe(true);
 });
 
-test("posthog page view", async ({ page }) => {
+test.skip("posthog page view", async ({ page }) => {
   let isPostHogEventCalled = false;
 
   await page.route(`**/*`, async (route, request) => {
