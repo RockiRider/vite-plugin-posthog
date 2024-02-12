@@ -14,7 +14,7 @@ export default ({ mode }) => {
       vitePostHog({
         apiKey: process.env.VITE_POSTHOG_KEY,
         hostUrl: "https://eu.posthog.com",
-        isDevModeOn: true,
+        isCheckingForDevMode: process.env.VITE_CHECK_FOR_DEV === "true",
         config: {
           autocapture: false,
           disable_session_recording: true,
