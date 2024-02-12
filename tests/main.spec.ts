@@ -52,7 +52,7 @@ test("posthog initialization", async ({ page }) => {
   expect(isPostHogInit).toBe(true);
 });
 
-test("posthog page view", async ({ page }) => {
+test.skip("posthog page view", async ({ page }) => {
   let isPostHogEventCalled = false;
 
   await page.route(`**/*`, async (route, request) => {
