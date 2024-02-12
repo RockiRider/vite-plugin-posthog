@@ -25,20 +25,19 @@ jobs:
         run: | 
           cd apps/example-react
           touch .env
+          echo VITE_POSTHOG_KEY=${{secrets.VITE_POSTHOG_KEY}} >> .env
           echo VITE_CHECK_FOR_DEV=false >> .env
           echo VITE_APP_TITLE=Example >> .env
-          cat .env
           cd ../..
-
-      # - name: "Build Vite App"
-      #   run: npm run example:build
-      # - name: Install Playwright Browsers
-      #   run: npx playwright install --with-deps chromium
-      # - name: Run Playwright tests
-      #   run: npx playwright test
-      # - uses: actions/upload-artifact@v3
-      #   if: always()
-      #   with:
-      #     name: playwright-report
-      #     path: playwright-report/
-      #     retention-days: 30
+      - name: "Build Vite App"
+        run: npm run example:build
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+      - name: Run Playwright tests
+        run: npx playwright test
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
