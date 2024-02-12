@@ -4,6 +4,42 @@ on:
     branches: [main]
 
 jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: 
+          node-version: 20
+      - run: npm ci
+      - run: npm run build
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: package-dist
+          retention-days: 1
+          path: |
+            packages/vite-plugin-posthog/dist
+      - name: Create env file
+        run: | 
+          cd apps/example-react
+          touch .env
+          echo VITE_POSTHOG_KEY=${{secrets.VITE_POSTHOG_KEY}} > .env
+          echo VITE_CHECK_FOR_DEV=false > .env
+      - name: "Build Vite App"
+        run: npm run example:build
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx playwright test
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+
+
   publish:
     runs-on: ubuntu-latest
     permissions:
@@ -14,7 +50,11 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-      - run: npm run build
+      - name: Download production artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: package-dist
+          path: packages/vite-plugin-posthog/dist
       - uses: JS-DevTools/npm-publish@v3
         id: publish
         with:
@@ -30,7 +70,6 @@ jobs:
           custom_tag: v${{steps.publish.outputs.version}}
           tag_prefix: vite-plugin-posthog_
           
-
       - name: Create a GitHub release
         if: ${{ steps.publish.outputs.type }}
         uses: ncipollo/release-action@v1
@@ -38,3 +77,4 @@ jobs:
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
+          generateReleaseNotes: true

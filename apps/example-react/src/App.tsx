@@ -6,15 +6,13 @@ import {
   useVitePostHog,
   useFeatureFlagEnabled,
 } from "vite-plugin-posthog/react";
-import { useConsent } from "react-posthog-consent/vite";
 
 function App() {
   const [count, setCount] = useState(0);
   const posthog = useVitePostHog();
   const showWelcomeMessage = useFeatureFlagEnabled("welcome-msg");
-  const { handleReset } = useConsent();
 
-  const handleClick = () => {
+  const handleClickBeacon = () => {
     posthog?.capture("count incremented");
     setCount((count) => count + 1);
   };
@@ -32,7 +30,9 @@ function App() {
       <h1>Vite + React</h1>
       {showWelcomeMessage && <h2>Welcome to Vite + React!</h2>}
       <div className="card">
-        <button onClick={handleClick}>count is {count}</button>
+        <button onClick={handleClickBeacon} data-testid={"main_count_btn"}>
+          count is {count}
+        </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
@@ -40,7 +40,6 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <button onClick={handleReset}>Custom Reset</button>
       <button onClick={() => posthog?.reset()}>Reset</button>
     </>
   );

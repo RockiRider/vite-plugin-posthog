@@ -9,7 +9,7 @@ export { VitePostHogOptions } from "./types";
  * @returns
  */
 export function vitePostHog(options: VitePostHogOptions): Plugin {
-  const { apiKey, hostUrl, isDevModeOn, config } = options;
+  const { apiKey, hostUrl, isCheckingForDevMode, config } = options;
 
   const postHogConfig: PostHogInitConfig = {
     api_host: hostUrl,
@@ -26,7 +26,11 @@ export function vitePostHog(options: VitePostHogOptions): Plugin {
         attrs: {
           type: "text/javascript",
         },
-        children: constructScript(apiKey, isDevModeOn ?? false, postHogConfig),
+        children: constructScript(
+          apiKey,
+          isCheckingForDevMode ?? false,
+          postHogConfig
+        ),
       };
       return [injectedTag];
     },

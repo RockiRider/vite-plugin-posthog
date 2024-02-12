@@ -10,6 +10,6 @@ export type VitePostHogOptionsConfig = Partial<PostHogConfigOptions>;
 export type VitePostHogOptions = {
   apiKey: string;
   hostUrl: string;
-  isDevModeOn?: boolean;
+  isCheckingForDevMode?: boolean;
   config?: VitePostHogOptionsConfig;
 };

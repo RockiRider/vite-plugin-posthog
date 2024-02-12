@@ -30,9 +30,11 @@ const constructDevModeInit = (
 
 export const constructScript = (
   key: string,
-  isDevModeOn: boolean,
+  isCheckingForDevMode: boolean,
   config: PostHogInitConfig
 ) => `${BASE_SCRIPT}
 ${
-  isDevModeOn ? constructInit(key, config) : constructDevModeInit(key, config)
+  isCheckingForDevMode
+    ? constructDevModeInit(key, config)
+    : constructInit(key, config)
 }`;

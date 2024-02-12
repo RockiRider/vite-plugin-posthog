@@ -5,10 +5,14 @@
     "dev": "turbo dev --filter=example-react",
     "example:build": "turbo build --filter=example-react",
     "lint": "turbo lint",
-    "build": "turbo build --filter=vite-plugin-posthog --force",
+    "build": "turbo build --filter=vite-plugin-posthog",
+    "fbuild": "turbo build --filter=vite-plugin-posthog --force",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "preview": "turbo preview --filter=example-react",
+    "fpreview": "turbo preview --filter=example-react --force",
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
     "deploy": "bash ./bin/deploy.sh vite-plugin-posthog"
-    
   },
   "devDependencies": {
     "@playwright/test": "^1.40.1",
