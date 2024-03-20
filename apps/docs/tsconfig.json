@@ -19,7 +19,7 @@
       "**/*.ts",
       "**/*.tsx",
       ".next/types/**/*.ts"
-,    ],
+, "pages/index.mdx",    ],
     "exclude": ["node_modules"]
   }
   

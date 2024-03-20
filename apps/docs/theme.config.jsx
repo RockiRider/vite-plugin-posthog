@@ -7,11 +7,11 @@ export default {
     "https://github.com/RockiRider/mui-sonner/tree/main/apps/docs",
   useNextSeoProps() {
     return {
-      titleTemplate: "%s | MUI Sonner",
-      description: "MUI Sonner",
+      titleTemplate: "%s | Vite Posthog",
+      description: "Vite Posthog",
       openGraph: {
-        description: "A toast component for MUI & React",
-        siteName: "MUI Sonner",
+        description: "A vite integration with Posthog",
+        siteName: "Vite Posthog",
       },
       twitter: {},
     };
@@ -24,8 +24,8 @@ export default {
     text: (
       <span>
         MIT {new Date().getFullYear()} ©{" "}
-        <a href="https://mui-sonner.tsotne.co.uk" target="_blank">
-          MUI Sonner
+        <a href="https://vite-posthog.tsotne.co.uk" target="_blank">
+          Vite Posthog
         </a>
         .
       </span>

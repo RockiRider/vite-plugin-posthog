@@ -1,27 +1,12 @@
-import {
-  Html,
-  Head,
-  Main,
-  NextScript,
-  DocumentProps,
-  DocumentContext,
-} from "next/document";
-import {
-  DocumentHeadTags,
-  DocumentHeadTagsProps,
-  documentGetInitialProps,
-} from "@mui/material-nextjs/v14-pagesRouter";
+import { Html, Head, Main, NextScript } from "next/document";
 
-export default function MyDocument(
-  props: DocumentProps & DocumentHeadTagsProps
-) {
+export default function MyDocument() {
   return (
     <Html lang="en">
       <Head>
         {/* PWA primary color */}
-        <link rel="shortcut icon" href="/icon.ico" />
+        <link rel="shortcut icon" href="/vite_logo.svg" />
         <meta name="emotion-insertion-point" content="" />
-        <DocumentHeadTags {...props} />
       </Head>
       <body>
         <Main />
@@ -30,8 +15,3 @@ export default function MyDocument(
     </Html>
   );
 }
-
-MyDocument.getInitialProps = async (ctx: DocumentContext) => {
-  const finalProps = await documentGetInitialProps(ctx);
-  return finalProps;
-};

@@ -1,27 +1,15 @@
 {
-    "getting-started": {
+  "index": {
+    "title": "Home",
+    "href": "/"
+  },
+  "getting-started": {
       "title": "Getting Started",
       "href": "/getting-started"
       
     },
-    "-- API": {
+    "-- REACT": {
       "type": "separator",
       "title": "API"
-    },
-    "toast": {
-      "title": "toast()",
-      "href": "/toast"
-    },
-    "toaster": {
-      "title": "Toaster",
-      "href": "/toaster"
-    },
-    "-- More": {
-      "type": "separator",
-      "title": "Guides"
-    },
-    "styling": {
-      "title": "Styling",
-      "href": "/styling"
     }
   }

@@ -6,69 +6,7 @@
 
 Helps you integrate with PostHog specifically designed with Vite in mind. Currently compatible with all frameworks/libraries built by Vite, however we provide additional support for React (Hooks and Components) to make it easier to get started with React. Additional support for other frameworks/libraries is planned, in order to make it easier to get started with PostHog in your framework/library of choice.
 
-## Advantages over official Posthog React SDK
-
-- Posthog will be initialised faster, as you don't need to wait for a `<PosthogProvider />` component to be mounted
-- No need to wrap your app in an additional `context` component via `<PosthogProvider />`
-- Easy to get started with, just add it to your `vite.config.js` file
-- Easily turn off tracking in development mode
-- Additional Hooks and Components to get you up and running quickly
-
-## Installation
-
-Inside your vite.config.ts file:
-
-```ts
-import { vitePostHog } from "vite-plugin-posthog";
-
-// https://vitejs.dev/config/
-export default ({ mode }) => {
-  process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
-
-  // import.meta.env.VITE_NAME available here with: process.env.VITE_NAME
-
-  return defineConfig({
-    plugins: [
-      react(),
-      vitePostHog({
-        apiKey: process.env.VITE_POSTHOG_KEY,
-        hostUrl: "https://eu.posthog.com",
-        isDevModeOn: true,
-        config: {
-          autocapture: false,
-          capture_pageview: false,
-          // ...other posthog config options
-        },
-      }),
-    ],
-  });
-};
-```
-
-## Usage with React
-
-```jsx
-import {
-  useVitePostHog,
-  useFeatureFlagEnabled,
-} from "vite-plugin-posthog/react";
-
-const App = () => {
-  const posthog = useVitePostHog();
-
-  return (
-    <div>
-      <button
-        onClick={() => {
-          posthog?.capture("button clicked", { buttonName: "test" });
-        }}
-      >
-        Click me
-      </button>
-    </div>
-  );
-};
-```
+## Documentation
 
 ### Available Hooks
 
