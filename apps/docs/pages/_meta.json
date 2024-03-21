@@ -4,12 +4,16 @@
     "href": "/"
   },
   "getting-started": {
-      "title": "Getting Started",
-      "href": "/getting-started"
-      
-    },
-    "-- REACT": {
-      "type": "separator",
-      "title": "API"
-    }
+    "title": "Getting Started",
+    "href": "/getting-started"
+    
+  },
+  "-- SDK": {
+    "type": "separator",
+    "title": "SDKs"
+  },
+  "react": {
+    "title": "React",
+    "href": "/react"
   }
+}
