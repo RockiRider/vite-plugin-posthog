@@ -1,10 +1,10 @@
 export default {
-  logo: <span style={{ fontWeight: 600 }}>MUI Sonner</span>,
+  logo: <span style={{ fontWeight: 600 }}>Vite Posthog</span>,
   project: {
-    link: "https://github.com/RockiRider/mui-sonner",
+    link: "https://github.com/RockiRider/vite-plugin-posthog",
   },
   docsRepositoryBase:
-    "https://github.com/RockiRider/mui-sonner/tree/main/apps/docs",
+    "https://github.com/RockiRider/vite-plugin-posthog/tree/main/apps/docs",
   useNextSeoProps() {
     return {
       titleTemplate: "%s | Vite Posthog",

@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://mui-sonner.tsotne.co.uk",
+  siteUrl: "https://vite-posthog.tsotne.co.uk",
   generateRobotsTxt: true, // (optional)
   generateIndexSitemap: false,
   sitemapSize: 100,
@@ -15,16 +15,12 @@ module.exports = {
       priority: 0.9,
     },
     {
-      loc: "/toast",
-      priority: 0.7,
+      loc: "/react/core",
+      priority: 0.6,
     },
     {
-      loc: "/toaster",
-      priority: 0.7,
-    },
-    {
-      loc: "/styling",
-      priority: 0.7,
+      loc: "/react/feature-flags",
+      priority: 0.6,
     },
   ],
 };
