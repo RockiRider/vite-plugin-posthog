@@ -1,0 +1,91 @@
+import { Cards, Card, Callout } from 'nextra/components'
+
+# Core usage
+
+This is how you would typically access Posthog's API in your app.
+
+```tsx
+import { useVitePostHog } from "vite-plugin-posthog/react"
+
+export default function MyComponent() {
+  const posthog = useVitePostHog()
+
+  return (
+    <button onClick={() => posthog?.capture("button_clicked")}>
+      Click me
+    </button>
+  )
+}
+```
+
+`useVitePostHog` is a hook that returns a PostHog instance. You can use to interact with PostHog. 
+
+<Callout type="info" emoji="ℹ️">
+  It is a wrapper around the [PostHog JS library](https://posthog.com/docs/libraries/js), so you can use all the methods that the library provides.
+</Callout>
+
+## Idenitification example
+
+
+```tsx
+import { useVitePostHog } from "vite-plugin-posthog/react"
+
+export default function MyComponent() {
+  const posthog = useVitePostHog()
+
+  const onSubmit = () => {
+    posthog?.identify("123", {
+      email: "my@email.com",
+    })
+  }
+
+  return (
+    <button onClick={onSubmit}>
+      Identify Me
+    </button>
+  )
+}
+```
+
+## Resetting the user example
+
+```tsx
+import { useVitePostHog } from "vite-plugin-posthog/react"
+
+export default function MyComponent() {
+  const posthog = useVitePostHog()
+
+  const onSubmit = () => {
+    posthog?.reset()
+  }
+
+  return (
+    <button onClick={onSubmit}>
+      Reset Me
+    </button>
+  )
+}
+```
+
+## Super Properties example
+
+```tsx
+import { useVitePostHog } from "vite-plugin-posthog/react"
+
+export default function MyComponent() {
+  const posthog = useVitePostHog()
+
+  const onSubmit = () => {
+    posthog?.register({
+    'icecream pref': 'vanilla',
+    team_id: 22,
+})
+  }
+
+  return (
+    <button onClick={onSubmit}>
+      Set props
+    </button>
+  )
+}
+```

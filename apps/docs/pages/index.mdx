@@ -1,0 +1,18 @@
+import { Tab, Tabs, Cards, Card, Steps } from "nextra-theme-docs";
+
+# Vite Plugin Posthog
+
+This is a plugin for vite that allows you to integrate with Posthog.
+
+Its based on the official [Javascript SDK](https://posthog.com/docs/libraries/js) and uses these under the hood.
+
+
+
+## Advantages over the official JS SDK
+- Easy to get started, just add the plugin to your Vite config.
+- Easily turn off tracking in development mode
+
+## Additional advantages over the official React SDK
+- Faster initialisation, as it doesn't need to wait for React to load.
+- Additional hooks and components to help you further integrate Posthog into your app.
+- No need to wrap your app in an additional context component via `<PosthogProvider />`
