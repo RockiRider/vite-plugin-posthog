@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "turbo dev --filter=example-react",
     "docs:dev": "turbo dev --filter=docs",
+    "docs:build": "turbo build --filter=docs",
     "example:build": "turbo build --filter=example-react",
     "lint": "turbo lint",
     "build": "turbo build --filter=vite-plugin-posthog",
