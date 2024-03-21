@@ -2,7 +2,7 @@
     "name": "vite-plugin-posthog",
     "version": "2.0.5",
     "type": "module",
-    "homepage": "https://github.com/RockiRider/vite-plugin-posthog/tree/main/packages/vite-plugin-posthog",
+    "homepage": "https://vite-posthog.tsotne.co.uk",
     "keywords": [
         "vite",
         "posthog",

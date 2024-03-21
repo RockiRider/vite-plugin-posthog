@@ -6,6 +6,8 @@
 
 Helps you integrate with PostHog specifically designed with Vite in mind. Currently compatible with all frameworks/libraries built by Vite, however we provide additional support for React (Hooks and Components) to make it easier to get started with React. Additional support for other frameworks/libraries is planned, in order to make it easier to get started with PostHog in your framework/library of choice.
 
+## [Documentation](https://vite-posthog.tsotne.co.uk)
+
 ### Available Hooks
 
 | Hook                     | Description                                                                                     |
