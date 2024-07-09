@@ -1,11 +1,16 @@
-import { Callout } from 'nextra/components'
+import { Callout, Steps } from 'nextra/components'
 
 # Feature Flags
 
-<Callout type="info" emoji="ℹ️">
-  Better docs coming soon
-</Callout>
 
+<Steps>
+### Create your feature flag
+ 
+Create your feature flag in PostHog. You can read up about this on their [official docs](https://posthog.com/docs/feature-flags/creating-feature-flags)
+ 
+### The code
+ 
+Use any of the hooks or components we provide below to safeguard features in your app based on the feature flag.
 
 | Hook/Component                     | Description                                                                                     |
 | ------------------------ | ----------------------------------------------------------------------------------------------- |
@@ -14,3 +19,160 @@ import { Callout } from 'nextra/components'
 | useFeatureFlagVariantKey | Returns the variant key of the feature flag.                                                    |
 | useActiveFeatureFlags    | Returns an array of active feature flags.                                                       |
 | PostHogFeature | A component that allows you to render different content based on whether a feature flag is enabled or not. |
+
+### Testing
+Testing your feature flag in your app. There are multiple methods for this, all of which are covered in the [official docs](https://posthog.com/docs/feature-flags/testing)
+</Steps>
+
+
+### Hooks and Components
+
+#### useFeatureFlagEnabled
+A hook that returns `true` if feature flag is enabled.
+
+```tsx
+import { useFeatureFlagEnabled } from 'vite-plugin-posthog/react'
+
+function App() {
+  const showWelcomeMessage = useFeatureFlagEnabled('flag-key')
+
+  return (
+    <div className="App">
+      {
+        showWelcomeMessage ? (
+          <div>
+            <h1>Welcome!</h1>
+            <p>Thanks for trying out our feature flags.</p>
+          </div>
+        ) : (
+          <div>
+            <h2>No welcome message</h2>
+            <p>Because the feature flag evaluated to false.</p>
+          </div>
+        )
+      }
+    </div>
+  );
+}
+
+export default App;
+```
+
+#### useFeatureFlagPayload
+
+A hook that returns the payload of a feature flag.
+
+```tsx
+import { useFeatureFlagPayload } from 'vite-plugin-posthog/react'
+
+function App() {
+  const payload = useFeatureFlagPayload('show-welcome-message')
+
+    return (
+                <>
+                {
+                    payload?.welcomeMessage ? (
+                        <div className="welcome-message">
+                            <h2>{payload?.welcomeTitle}</h2>
+                            <p>{payload.welcomeMessage}</p>
+                        </div>
+                    ) : <div>
+                        <h2>No welcome message</h2>
+                        <p>Because the feature flag evaluated to false.</p>
+                    </div>
+                }
+        </>
+    )
+}
+```
+
+#### useFeatureFlagVariantKey
+
+A hook that returns the variant key of a feature flag.
+
+```tsx
+import { useFeatureFlagVariantKey } from 'vite-plugin-posthog/react'
+
+function App() {
+  const variantKey = useFeatureFlagVariantKey('show-welcome-message')
+  let welcomeMessage = '' 
+  if (variantKey === 'variant-a') {
+    welcomeMessage = 'Welcome to the Alpha!'
+  } else if (variantKey === 'variant-b') {
+    welcomeMessage = 'Welcome to the Beta!'
+  }  
+
+  return (
+    <div className="App">
+      {
+        welcomeMessage ? (
+          <div>
+            <h1>{welcomeMessage}</h1>
+            <p>Thanks for trying out our feature flags.</p>
+          </div>
+        ) : (
+          <div>
+            <h2>No welcome message</h2>
+            <p>Because the feature flag evaluated to false.</p>
+          </div>
+        )
+      }
+    </div>
+  );
+}
+
+export default App;
+
+```
+
+
+#### useActiveFeatureFlags
+
+A hook that returns an array of active feature flags.
+
+```tsx
+
+import { useActiveFeatureFlags } from 'vite-plugin-posthog/react'
+
+function App() {
+  const activeFeatureFlags = useActiveFeatureFlags()
+
+  return (
+    <div className="App">
+      <h1>Active Feature Flags</h1>
+      <ul>
+        {activeFeatureFlags.map((flag) => (
+          <li key={flag.key}>
+            <strong>{flag.key}</strong> - {flag.name}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+```
+
+#### PostHogFeature
+
+The PostHogFeature component simplifies code by handling feature flag related logic.
+
+It also automatically captures metrics, like how many times a user interacts with this feature.
+
+```tsx
+
+import { PostHogFeature } from 'vite-plugin-posthog/react'
+
+function App() {
+
+    return (
+        <PostHogFeature flag='show-welcome-message' match={true}>
+            <div>
+                <h1>Hello</h1>
+                <p>Thanks for trying out our feature flags.</p>
+            </div>
+        </PostHogFeature>
+    )
+}
+
+```

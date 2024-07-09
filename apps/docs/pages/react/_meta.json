@@ -6,5 +6,9 @@
     "feature-flags": {
         "title": "Feature Flags",
         "href": "/react/feature-flags"
+    },
+    "surveys": {
+        "title": "Surveys",
+        "href": "/react/surveys"
     }
   }
