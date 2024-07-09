@@ -1,0 +1,79 @@
+import { Callout, Steps } from 'nextra/components'
+
+# Surveys
+
+Posthog also provides a way to create surveys and collect feedback from your users.
+
+
+<Steps>
+### Create your survey
+ 
+Create your survey in PostHog. You can read up about this on their [official docs](https://posthog.com/docs/surveys/creating-surveys)
+
+<Callout type="info" emoji="ℹ️">
+  If you are creating a `Popover` survey you can skip the next steps.
+</Callout>
+ 
+### Display your survey
+
+Use the `useGetActiveMatchingSurvey` hook to fetch your survey's data and display it in the app.
+
+The hook also returns helpful functions to handle the tracking of dismissing and completing the survey. 
+
+```tsx
+import { useState } from 'react';
+import { useGetActiveMatchingSurvey, useVitePostHog } from 'vite-plugin-posthog/react';
+
+const SurveyComponent = ({ surveyId }) => {
+  const posthog = useVitePostHog();
+  const { currentSurvey, surveyFound, isLoading, trackDismiss } = useGetActiveMatchingSurvey(surveyId);
+  const [show, setShow] = useState(true);
+
+  if (isLoading) {
+    return <div>Loading survey...</div>;
+  }
+
+  if (!surveyFound) {
+    return <div>No survey found.</div>;
+  }
+
+  if(!show) {
+    return null;
+  }
+
+  const handleSubmit = () => {
+    posthog?.capture("survey sent", {
+      $survey_id: surveyId,
+      $survey_response: // your response data
+    });
+  }
+
+  const handleDismiss = () => {
+    setShow(false);
+    trackDismiss();
+  }
+
+
+
+  return (
+    <form>
+      <h2>{currentSurvey.title}</h2>
+      <p>{currentSurvey.description}</p>
+      {
+        currentSurvey.questions.map((question) => (
+            // Depending on the question type you can render different components
+        ))
+      }
+      <button onClick={handleDismiss}>Dismiss</button>
+      <button onClick={handleSubmit}>Complete</button>
+    </form>
+  );
+};
+
+export default SurveyComponent;
+
+```
+
+### Testing
+Testing your feature flag in your app. There are multiple methods for this, all of which are covered in the [official docs](https://posthog.com/docs/feature-flags/testing)
+</Steps>
