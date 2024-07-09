@@ -52,7 +52,7 @@ export const useGetActiveMatchingSurvey = (
     }, true);
   }, [posthog, surveyId]);
 
-  const handleDismiss = () => {
+  const trackDismiss = () => {
     posthog?.capture("survey dismissed", {
       $survey_id: surveyId,
       ...eventMetaData,
@@ -64,7 +64,7 @@ export const useGetActiveMatchingSurvey = (
       currentSurvey: surveyState.currentSurvey,
       surveyFound: surveyState.surveyFound,
       isLoading: surveyState.isLoading,
-      handleDismiss,
+      trackDismiss: trackDismiss,
     };
   }, [surveyState]);
 };
