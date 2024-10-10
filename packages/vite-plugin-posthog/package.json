@@ -1,6 +1,6 @@
 {
     "name": "vite-plugin-posthog",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "type": "module",
     "homepage": "https://vite-posthog.tsotne.co.uk",
     "keywords": [
